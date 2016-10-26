@@ -1,0 +1,88 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &195512
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 405750}
+  - 114: {fileID: 11472012}
+  m_Layer: 0
+  m_Name: FINE CALIBRATION
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &405750
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 195512}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 6.146247, y: 4.9142923, z: -31.479652}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+--- !u!114 &11472012
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 195512}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 54a8df1d96bede848a06a5e5055f13b6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  current: 
+  canvas: {fileID: 0}
+  pauseInput: 0
+  brightness: 3
+  interval: 1
+  relativeTo: 1
+  nextSlice: 114
+  prevSlice: 102
+  highlightUL: 113
+  highlightUR: 101
+  highlightLL: 122
+  highlightLR: 99
+  highlightM: 115
+  up: 120
+  down: 119
+  left: 97
+  right: 100
+  skewXUp: 276
+  skewXDn: 275
+  skewYUp: 273
+  skewYDn: 274
+  bowTopUp: 57
+  bowTopDn: 111
+  bowBotUp: 108
+  bowBotDn: 46
+  bowLLeft: 106
+  bowLRight: 107
+  bowRLeft: 59
+  bowRRight: 39
+  calibrationCorner: {fileID: 2800000, guid: 0f31d70bfbd59404794c51f8bc5467ec, type: 3}
+  calibrationCenter: {fileID: 2800000, guid: 13af63765e4e8744ea5303d7181eb438, type: 3}
+  selectedMat: {fileID: 2100000, guid: 0d696eb534f2c164b952580b3df414d0, type: 2}
+  offMat: {fileID: 2100000, guid: 99b45b85227481b4c8b92e0cf48403e1, type: 2}
+  blackMat: {fileID: 2100000, guid: a639b8bf786efa5488f3222c931bdfab, type: 2}
+  testMat1: {fileID: 2100000, guid: f8c8c066897d49a42a2ae985f0ef0016, type: 2}
+  testMat2: {fileID: 2100000, guid: 83f8c3b4e59b5414db706cbe8c256bc1, type: 2}
+--- !u!1001 &100100000
+Prefab:
+  m_ObjectHideFlags: 1
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications: []
+    m_RemovedComponents: []
+  m_ParentPrefab: {fileID: 0}
+  m_RootGameObject: {fileID: 195512}
+  m_IsPrefabParent: 1
