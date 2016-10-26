@@ -77,6 +77,41 @@
     <Compile Include="Assets\Application\Menu\Script\menuScript\menuSlide.cs" />
     <Compile Include="Assets\Application\Menu\Script\menuScript\menuSlideBack.cs" />
     <Compile Include="Assets\Application\Menu\Singleton.cs" />
+    <Compile Include="Assets\Hypercube\demo\demoRotator.cs" />
+    <Compile Include="Assets\Hypercube\demo\demo_input\inputTest.cs" />
+    <Compile Include="Assets\Hypercube\demo\hypercubeAnimLauncher.cs" />
+    <Compile Include="Assets\Hypercube\demo\hypercubeFpsControl.cs" />
+    <Compile Include="Assets\Hypercube\demo\toggleWithKey.cs" />
+    <Compile Include="Assets\Hypercube\internal\calibrator\basicSettingsAdjustor.cs" />
+    <Compile Include="Assets\Hypercube\internal\calibrator\calibrationRotator.cs" />
+    <Compile Include="Assets\Hypercube\internal\calibrator\calibrationStager.cs" />
+    <Compile Include="Assets\Hypercube\internal\calibrator\calibrator.cs" />
+    <Compile Include="Assets\Hypercube\internal\calibrator\generalSettingsAdjustor.cs" />
+    <Compile Include="Assets\Hypercube\internal\calibrator\touchScreenMapper.cs" />
+    <Compile Include="Assets\Hypercube\internal\calibrator\touchScreenSettings.cs" />
+    <Compile Include="Assets\Hypercube\internal\castMesh.cs" />
+    <Compile Include="Assets\Hypercube\internal\dataFileDict.cs" />
+    <Compile Include="Assets\Hypercube\internal\hypercubeCamera.cs" />
+    <Compile Include="Assets\Hypercube\internal\hypercubePreview.cs" />
+    <Compile Include="Assets\Hypercube\internal\materials\softOverlap.cs" />
+    <Compile Include="Assets\Hypercube\internal\onKeyDown.cs" />
+    <Compile Include="Assets\Hypercube\internal\serialCom\SerialController.cs" />
+    <Compile Include="Assets\Hypercube\internal\serialCom\SerialThread.cs" />
+    <Compile Include="Assets\Hypercube\internal\serialCom\input.cs" />
+    <Compile Include="Assets\Hypercube\internal\serialCom\streamedInputManager.cs" />
+    <Compile Include="Assets\Hypercube\internal\serialCom\touch.cs" />
+    <Compile Include="Assets\Hypercube\internal\serialCom\touchScreenInputManager.cs" />
+    <Compile Include="Assets\Hypercube\internal\serialCom\touchScreenTarget.cs" />
+    <Compile Include="Assets\Hypercube\internal\utils.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Assets\Hypercube\internal\materials\S_HypecrubeLit.shader" />
+    <None Include="Assets\Hypercube\internal\materials\S_HypercubeStandard.shader" />
+    <None Include="Assets\Hypercube\internal\materials\S_HypercubeStandardSpec.shader" />
+    <None Include="Assets\Hypercube\internal\materials\S_HypercubeUnlit.shader" />
+    <None Include="Assets\Hypercube\internal\materials\S_HypercubeUnlitCutout.shader" />
+    <None Include="Assets\Hypercube\internal\materials\depthTester.shader" />
+    <None Include="Assets\Hypercube\internal\materials\softOverlap.shader" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\SyntaxTree\UnityVS\2015\UnityVS.CSharp.targets" />
 </Project>

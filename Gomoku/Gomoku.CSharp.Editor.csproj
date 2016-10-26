@@ -103,6 +103,18 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assets\Editor\CrossPlatformInput\CrossPlatformInputInitialize.cs" />
+    <Compile Include="Assets\Hypercube\internal\Editor\calibrationMenuOption.cs" />
+    <Compile Include="Assets\Hypercube\internal\Editor\casterWindow.cs" />
+    <Compile Include="Assets\Hypercube\internal\Editor\casterWindowPrefs.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Assets\Hypercube\internal\materials\S_HypecrubeLit.shader" />
+    <None Include="Assets\Hypercube\internal\materials\S_HypercubeStandard.shader" />
+    <None Include="Assets\Hypercube\internal\materials\S_HypercubeStandardSpec.shader" />
+    <None Include="Assets\Hypercube\internal\materials\S_HypercubeUnlit.shader" />
+    <None Include="Assets\Hypercube\internal\materials\S_HypercubeUnlitCutout.shader" />
+    <None Include="Assets\Hypercube\internal\materials\depthTester.shader" />
+    <None Include="Assets\Hypercube\internal\materials\softOverlap.shader" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\SyntaxTree\UnityVS\2015\UnityVS.CSharp.targets" />
 </Project>

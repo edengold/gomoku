@@ -11,6 +11,10 @@ public class BoardManager : MonoBehaviour
     [SerializeField]
     private GameObject prefab;
     [SerializeField]
+    private GameObject prefabBord;
+    [SerializeField]
+    private GameObject parentBord;
+    [SerializeField]
     private GameObject faceFront;
     [SerializeField]
     private GameObject faceBack;
@@ -28,9 +32,9 @@ public class BoardManager : MonoBehaviour
     private GameObject point;
 
     [SerializeField]
-    private int x = 19;
+    private int x = 21;
     [SerializeField]
-    private int z = 19;
+    private int z = 21;
     #endregion
     void Start()
     {
@@ -63,29 +67,33 @@ public class BoardManager : MonoBehaviour
         {
             for (int j = 0; j < z; j += multiplicateur)
             {
-                GameObject tmp = (GameObject)GameObject.Instantiate(prefab, new Vector3(i, 0, j), Quaternion.identity);
+                GameObject tmp;
+                if ((i == 0 || j == 0) || (i == 20 || j == 20))
+                     tmp = (GameObject)GameObject.Instantiate(prefabBord, new Vector3(i, 0, j), Quaternion.identity);
+                else
+                     tmp = (GameObject)GameObject.Instantiate(prefab, new Vector3(i, 0, j), Quaternion.identity);
                 tmp.transform.Rotate(new Vector3(90, 0, 0));
-                switch (face)
-                {
-                    case 0:
-                        tmp.transform.parent = faceFront.transform;
-                        break;
-                    case 1:
-                        tmp.transform.parent = faceBack.transform;
-                        break;
-                    case 2:
-                        tmp.transform.parent = faceTop.transform;
-                        break;
-                    case 3:
-                        tmp.transform.parent = faceBot.transform;
-                        break;
-                    case 4:
-                        tmp.transform.parent = faceLeft.transform;
-                        break;
-                    case 5:
-                        tmp.transform.parent = faceRight.transform;
-                        break;
-                }
+                    switch (face)
+                    {
+                        case 0:
+                            tmp.transform.parent = faceFront.transform;
+                            break;
+                        case 1:
+                            tmp.transform.parent = faceBack.transform;
+                            break;
+                        case 2:
+                            tmp.transform.parent = faceTop.transform;
+                            break;
+                        case 3:
+                            tmp.transform.parent = faceBot.transform;
+                            break;
+                        case 4:
+                            tmp.transform.parent = faceLeft.transform;
+                            break;
+                        case 5:
+                            tmp.transform.parent = faceRight.transform;
+                            break;
+                    }
             }
         }
         switch (face)
@@ -123,38 +131,42 @@ public class BoardManager : MonoBehaviour
         List<GameObject> piontmp = new List<GameObject>();
         foreach (Transform child in face)
         {
-            GameObject tmp = (GameObject)GameObject.Instantiate(point, child.transform.position, Quaternion.identity);
-            tmp.transform.parent = child.transform;
-            tmp.transform.localPosition = new Vector3(-0.5f, -0.5f, 0);
-            tmp.transform.Rotate(rot);
-            rules.PionTab[faceSide].Add(tmp);
-            if (j == 19)
+            if (child.gameObject.name != "bord(Clone)")
             {
-                GameObject tmp3 = (GameObject)GameObject.Instantiate(point, child.transform.position, Quaternion.identity);
-                tmp3.transform.parent = child.transform;
-                tmp3.transform.localPosition = new Vector3(0.5f, -0.5f, 0);
-                tmp3.transform.Rotate(rot);
-                piontmp.Add(tmp3);
-
-            }
-            if (i == x)
-            {
-                GameObject tmp2 = (GameObject)GameObject.Instantiate(point, child.transform.position, Quaternion.identity);
-                tmp2.transform.parent = child.transform;
-                tmp2.transform.localPosition = new Vector3(-0.5f, 0.5f, 0);
-                tmp2.transform.Rotate(rot);
-                rules.PionTab[faceSide].Add(tmp2);
+                Debug.Log(child.gameObject.name);
+                GameObject tmp = (GameObject)GameObject.Instantiate(point, child.transform.position, Quaternion.identity);
+                tmp.transform.parent = child.transform;
+                tmp.transform.localPosition = new Vector3(-0.5f, -0.5f, 0);
+                tmp.transform.Rotate(rot);
+                rules.PionTab[faceSide].Add(tmp);
                 if (j == 19)
                 {
-                    GameObject tmp4 = (GameObject)GameObject.Instantiate(point, child.transform.position, Quaternion.identity);
-                    tmp4.transform.parent = child.transform;
-                    tmp4.transform.localPosition = new Vector3(0.5f, 0.5f, 0);
-                    tmp4.transform.Rotate(rot);
-                    piontmp.Add(tmp4);
+                    GameObject tmp3 = (GameObject)GameObject.Instantiate(point, child.transform.position, Quaternion.identity);
+                    tmp3.transform.parent = child.transform;
+                    tmp3.transform.localPosition = new Vector3(0.5f, -0.5f, 0);
+                    tmp3.transform.Rotate(rot);
+                    piontmp.Add(tmp3);
 
                 }
-                i = 0;
-                j++;
+                if (i == x)
+                {
+                    GameObject tmp2 = (GameObject)GameObject.Instantiate(point, child.transform.position, Quaternion.identity);
+                    tmp2.transform.parent = child.transform;
+                    tmp2.transform.localPosition = new Vector3(-0.5f, 0.5f, 0);
+                    tmp2.transform.Rotate(rot);
+                    rules.PionTab[faceSide].Add(tmp2);
+                    if (j == 19)
+                    {
+                        GameObject tmp4 = (GameObject)GameObject.Instantiate(point, child.transform.position, Quaternion.identity);
+                        tmp4.transform.parent = child.transform;
+                        tmp4.transform.localPosition = new Vector3(0.5f, 0.5f, 0);
+                        tmp4.transform.Rotate(rot);
+                        piontmp.Add(tmp4);
+
+                    }
+                    i = 0;
+                    j++;
+                }
             }
             i++;
 
