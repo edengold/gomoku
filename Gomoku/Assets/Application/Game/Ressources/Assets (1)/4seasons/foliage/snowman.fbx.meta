@@ -1,0 +1,174 @@
+fileFormatVersion: 2
+guid: 66e08e72b7b088d4cada03333899e3c7
+timeCreated: 1477647097
+licenseType: Free
+ModelImporter:
+  serializedVersion: 19
+  fileIDToRecycleName:
+    100000: Cube
+    100002: Cylinder
+    100004: Cylinder_1
+    100006: Cylinder_2
+    100008: head
+    100010: Null_2
+    100012: Plane
+    100014: Plane_1
+    100016: Plane_2
+    100018: //RootNode
+    100020: Sphere
+    100022: Sphere_1
+    100024: Sphere_10
+    100026: Sphere_2
+    100028: Sphere_3
+    100030: Sphere_3_2
+    100032: Sphere_4
+    100034: Sphere_4_2
+    100036: Sphere_5
+    100038: Sphere_6
+    100040: Sphere_7
+    100042: Sphere_8
+    100044: Sphere_9
+    400000: Cube
+    400002: Cylinder
+    400004: Cylinder_1
+    400006: Cylinder_2
+    400008: head
+    400010: Null_2
+    400012: Plane
+    400014: Plane_1
+    400016: Plane_2
+    400018: //RootNode
+    400020: Sphere
+    400022: Sphere_1
+    400024: Sphere_10
+    400026: Sphere_2
+    400028: Sphere_3
+    400030: Sphere_3_2
+    400032: Sphere_4
+    400034: Sphere_4_2
+    400036: Sphere_5
+    400038: Sphere_6
+    400040: Sphere_7
+    400042: Sphere_8
+    400044: Sphere_9
+    2300000: Cube
+    2300002: Cylinder
+    2300004: Cylinder_1
+    2300006: Cylinder_2
+    2300008: head
+    2300010: Plane
+    2300012: Plane_1
+    2300014: Plane_2
+    2300016: Sphere
+    2300018: Sphere_1
+    2300020: Sphere_10
+    2300022: Sphere_2
+    2300024: Sphere_3_2
+    2300026: Sphere_4_2
+    2300028: Sphere_5
+    2300030: Sphere_6
+    2300032: Sphere_7
+    2300034: Sphere_8
+    2300036: Sphere_9
+    3300000: Cube
+    3300002: Cylinder
+    3300004: Cylinder_1
+    3300006: Cylinder_2
+    3300008: head
+    3300010: Plane
+    3300012: Plane_1
+    3300014: Plane_2
+    3300016: Sphere
+    3300018: Sphere_1
+    3300020: Sphere_10
+    3300022: Sphere_2
+    3300024: Sphere_3_2
+    3300026: Sphere_4_2
+    3300028: Sphere_5
+    3300030: Sphere_6
+    3300032: Sphere_7
+    3300034: Sphere_8
+    3300036: Sphere_9
+    4300000: Cube
+    4300002: Plane_2
+    4300004: Plane_1
+    4300006: Plane
+    4300008: Cylinder_2
+    4300010: Cylinder_1
+    4300012: Sphere_10
+    4300014: Sphere_9
+    4300016: Sphere_8
+    4300018: Sphere_7
+    4300020: Sphere_6
+    4300022: Sphere_5
+    4300024: Sphere_2
+    4300026: Sphere_4_2
+    4300028: Sphere_3_2
+    4300030: Cylinder
+    4300032: head
+    4300034: Sphere_1
+    4300036: Sphere
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    importBlendShapes: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    hasTranslationDoF: 0
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 0
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

@@ -1,0 +1,56 @@
+material "_pillar1Material__0"
+{
+	technique _pillar1Material__0_technique
+	{
+		pass _pillar1Material__0_standard
+		{
+			shading phong
+			ambient 1 1 1 1
+			diffuse 1 1 1 1
+			specular 0 0 0 0 25.5
+			emissive 0 0 0 1
+
+			texture_unit _pillar1Material__0_Ambient#0
+			{
+				texture bark_light.jpg
+				tex_coord_set 0
+				colour_op add
+			}
+
+			texture_unit _pillar1Material__0_Diffuse#1
+			{
+				texture bark_light.jpg
+				tex_coord_set 0
+				colour_op modulate
+			}
+		}
+	}
+}
+material "_pillar1EYES"
+{
+	technique _pillar1EYES_technique
+	{
+		pass _pillar1EYES_standard
+		{
+			shading phong
+			ambient 1 1 1 1
+			diffuse 1 1 1 1
+			specular 0 0 0 0 25.5
+			emissive 0 0 0 1
+
+			texture_unit _pillar1EYES_Ambient#0
+			{
+				texture summer.jpg
+				tex_coord_set 0
+				colour_op add
+			}
+
+			texture_unit _pillar1EYES_Diffuse#1
+			{
+				texture summer.jpg
+				tex_coord_set 0
+				colour_op modulate
+			}
+		}
+	}
+}

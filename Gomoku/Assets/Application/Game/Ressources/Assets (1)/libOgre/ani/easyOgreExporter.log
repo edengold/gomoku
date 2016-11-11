@@ -1,0 +1,49 @@
+Logging to file c:\users\ratch\dropbox\{epitech.}\cpp_indie_studio\assets\libogre\ani\easyOgreExporter.log
+Found node: character_default_p1
+Found mesh node: character_default_p1
+Creating skeleton ...
+Info : Get vertex bone weight
+Info : Found a root bone : Base HumanPelvis
+Exporting root bone : Base HumanPelvis
+Num. Skinned Vertices: 465
+Info: Number of map channel (UV) found in this mesh : 1
+Exporting 0 textures...
+Exporting 0 textures...
+Exporting 0 textures...
+Exporting 0 textures...
+Exporting 2 textures...
+Exporting 0 texture from Bitmap...
+Texture Index: 0
+Texture Name: Map #1
+Texture Name for Mask: 
+Updated texture location: C:\Users\ratch\Dropbox\{Epitech.}\cpp_indie_studio\Assets\textures\rope.png.
+Updated texture Mask location: .
+Ambient channel texture.
+Exporting 1 texture from Bitmap...
+Texture Index: 1
+Texture Name: Map #2
+Texture Name for Mask: 
+Updated texture location: C:\Users\ratch\Dropbox\{Epitech.}\cpp_indie_studio\Assets\textures\rope.png.
+Updated texture Mask location: .
+Diffuse channel texture.
+Writing character_default_p1 mesh binary...
+Info: Create Ogre submeshs
+Info: create submesh : 0
+Info: create submesh : 1
+Info: create submesh : 2
+Info: create submesh : 3
+Info: create submesh : 4
+Info: Create mesh bounding box
+Info: Create mesh edge list
+Info: Create mesh tangents
+Info: Link Ogre skeleton
+Info: Write mesh file : c:\users\ratch\dropbox\{epitech.}\cpp_indie_studio\assets\libogre\ani\mesh\character_default_p1.mesh
+Loading joint animations...
+clip "default_skl"
+length: 0.700000
+num keyframes: 2
+Writing skeleton binary...
+Found node: Base Human
+Writing materials data...
+Copy material textures files
+Info: export done.

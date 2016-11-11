@@ -1,0 +1,20 @@
+<scene upAxis="y" unitsPerMeter="1" unitType="meters" formatVersion="1.0" minOgreVersion="Latest version" author="EasyOgreExporter">
+    <environment>
+        <colourAmbient r="0" g="0" b="0" />
+        <colourBackground r="0" g="0" b="0" />
+    </environment>
+    <nodes>
+        <node name="bomb_default" id="0" isTarget="false">
+            <position x="-0.00688525" y="-0.0270423" z="-0.0370965" />
+            <rotation qx="-0" qy="-0" qz="-0" qw="-1" />
+            <scale x="1" y="1" z="1" />
+            <entity name="bomb_default" id="1" meshFile="bomb_default.mesh" castShadows="true">
+                <subentities>
+                    <subentity index="0" materialName="_bomb-defaulttest" />
+                    <subentity index="1" materialName="_bomb-default06___Default" />
+                    <subentity index="2" materialName="_bomb-defaultwire_000000000" />
+                </subentities>
+            </entity>
+        </node>
+    </nodes>
+</scene>

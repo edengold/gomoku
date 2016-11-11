@@ -1,0 +1,86 @@
+##***************************************************************
+##* Biped_Mixamo_name_mapping.csv
+##* This file is part of the Mixamo Auto Biped script.
+##*
+##* This file defines a list of name mapping
+##* from the original bones to the biped bones.
+##*
+##* 
+##* by Mixamo - author Ofer Zelichover 
+##* 
+##***************************************************************
+
+"Bip01";"CharName:Hips"
+"Bip01 Pelvis";
+"Bip01 Spine";"CharName:Spine"
+"Bip01 Spine1";"CharName:Spine1"
+"Bip01 Spine2";"CharName:Spine2"
+"Bip01 Spine3";
+"Bip01 Neck";"CharName:Neck"
+"Bip01 Neck1";"CharName:Neck1"
+"Bip01 L Clavicle";"CharName:LeftShoulder"
+"Bip01 L UpperArm";"CharName:LeftArm"
+"Bip01 L Forearm";"CharName:LeftForeArm"
+"Bip01 L Hand";"CharName:LeftHand"
+"Bip01 L Finger0";"CharName:LeftHandThumb1"
+"Bip01 L Finger01";"CharName:LeftHandThumb2"
+"Bip01 L Finger02";"CharName:LeftHandThumb3"
+"Bip01 L Finger0Nub";"CharName:LeftHandThumb4"
+"Bip01 L Finger1";"CharName:LeftHandIndex1"
+"Bip01 L Finger11";"CharName:LeftHandIndex2"
+"Bip01 L Finger12";"CharName:LeftHandIndex3"
+"Bip01 L Finger1Nub";"CharName:LeftHandIndex4"
+"Bip01 L Finger2";"CharName:LeftHandMiddle1"
+"Bip01 L Finger21";"CharName:LeftHandMiddle2"
+"Bip01 L Finger22";"CharName:LeftHandMiddle3"
+"Bip01 L Finger2Nub";"CharName:LeftHandMiddle4"
+"Bip01 L Finger3";"CharName:LeftHandRing1"
+"Bip01 L Finger31";"CharName:LeftHandRing2"
+"Bip01 L Finger32";"CharName:LeftHandRing3"
+"Bip01 L Finger3Nub";"CharName:LeftHandRing4"
+"Bip01 L Finger4";"CharName:LeftHandPinky1"
+"Bip01 L Finger41";"CharName:LeftHandPinky2"
+"Bip01 L Finger42";"CharName:LeftHandPinky3"
+"Bip01 L Finger4Nub";"CharName:LeftHandPinky4"
+"Bip01 R Clavicle";"CharName:RightShoulder"
+"Bip01 R UpperArm";"CharName:RightArm"
+"Bip01 R Forearm";"CharName:RightForeArm"
+"Bip01 R Hand";"CharName:RightHand"
+"Bip01 R Finger0";"CharName:RightHandThumb1"
+"Bip01 R Finger01";"CharName:RightHandThumb2"
+"Bip01 R Finger02";"CharName:RightHandThumb3"
+"Bip01 R Finger0Nub";"CharName:RightHandThumb4"
+"Bip01 R Finger1";"CharName:RightHandIndex1"
+"Bip01 R Finger11";"CharName:RightHandIndex2"
+"Bip01 R Finger12";"CharName:RightHandIndex3"
+"Bip01 R Finger1Nub";"CharName:RightHandIndex4"
+"Bip01 R Finger2";"CharName:RightHandMiddle1"
+"Bip01 R Finger21";"CharName:RightHandMiddle2"
+"Bip01 R Finger22";"CharName:RightHandMiddle3"
+"Bip01 R Finger2Nub";"CharName:RightHandMiddle4"
+"Bip01 R Finger3";"CharName:RightHandRing1"
+"Bip01 R Finger31";"CharName:RightHandRing2"
+"Bip01 R Finger32";"CharName:RightHandRing3"
+"Bip01 R Finger3Nub";"CharName:RightHandRing4"
+"Bip01 R Finger4";"CharName:RightHandPinky1"
+"Bip01 R Finger41";"CharName:RightHandPinky2"
+"Bip01 R Finger42";"CharName:RightHandPinky3"
+"Bip01 R Finger4Nub";"CharName:RightHandPinky4"
+"Bip01 Head";"CharName:Head"
+"Bip01 HeadNub";"CharName:HeadTop_End"
+"Bip01 L Thigh";"CharName:LeftUpLeg"
+"Bip01 L Calf";"CharName:LeftLeg"
+"Bip01 L Foot";"CharName:LeftFoot"
+"Bip01 L Toe0";"CharName:LeftToeBase"
+"Bip01 L Toe01";
+"Bip01 L Toe02";
+"Bip01 L Toe0Nub";"CharName:LeftToe_End"
+"Bip01 L Toe0Nub";"CharName:LeftFootToeBase_End"
+"Bip01 R Thigh";"CharName:RightUpLeg"
+"Bip01 R Calf";"CharName:RightLeg"
+"Bip01 R Foot";"CharName:RightFoot"
+"Bip01 R Toe0";"CharName:RightToeBase"
+"Bip01 R Toe01";
+"Bip01 R Toe02";
+"Bip01 R Toe0Nub";"CharName:RightToe_End"
+"Bip01 R Toe0Nub";"CharName:RightFootToeBase_End"

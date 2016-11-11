@@ -1,0 +1,165 @@
+fileFormatVersion: 2
+guid: 68940234312d25f4ea48a218ea3cc33e
+timeCreated: 1477647098
+licenseType: Free
+ModelImporter:
+  serializedVersion: 19
+  fileIDToRecycleName:
+    100000: Base
+    100002: branch01
+    100004: branch02
+    100006: Branch04
+    100008: Branch04_1
+    100010: Cylinder_3
+    100012: Cylinder_4
+    100014: Cylinder_4_2
+    100016: Cylinder_4_3
+    100018: Cylinder_5
+    100020: Cylinder_5_2
+    100022: Cylinder_5_3
+    100024: Leaves_v3
+    100026: Leaves_v3_1
+    100028: Leaves_v3_2
+    100030: Leaves_v3_3
+    100032: Leaves_v3_4
+    100034: Leaves_v3_5
+    100036: Tall_tree
+    100038: //RootNode
+    400000: Base
+    400002: branch01
+    400004: branch02
+    400006: Branch04
+    400008: Branch04_1
+    400010: Cylinder_3
+    400012: Cylinder_4
+    400014: Cylinder_4_2
+    400016: Cylinder_4_3
+    400018: Cylinder_5
+    400020: Cylinder_5_2
+    400022: Cylinder_5_3
+    400024: Leaves_v3
+    400026: Leaves_v3_1
+    400028: Leaves_v3_2
+    400030: Leaves_v3_3
+    400032: Leaves_v3_4
+    400034: Leaves_v3_5
+    400036: Tall_tree
+    400038: //RootNode
+    2300000: Base
+    2300002: branch01
+    2300004: branch02
+    2300006: Branch04
+    2300008: Branch04_1
+    2300010: Cylinder_3
+    2300012: Cylinder_4
+    2300014: Cylinder_4_2
+    2300016: Cylinder_4_3
+    2300018: Cylinder_5
+    2300020: Cylinder_5_2
+    2300022: Cylinder_5_3
+    2300024: Leaves_v3
+    2300026: Leaves_v3_1
+    2300028: Leaves_v3_2
+    2300030: Leaves_v3_3
+    2300032: Leaves_v3_4
+    2300034: Leaves_v3_5
+    3300000: Base
+    3300002: branch01
+    3300004: branch02
+    3300006: Branch04
+    3300008: Branch04_1
+    3300010: Cylinder_3
+    3300012: Cylinder_4
+    3300014: Cylinder_4_2
+    3300016: Cylinder_4_3
+    3300018: Cylinder_5
+    3300020: Cylinder_5_2
+    3300022: Cylinder_5_3
+    3300024: Leaves_v3
+    3300026: Leaves_v3_1
+    3300028: Leaves_v3_2
+    3300030: Leaves_v3_3
+    3300032: Leaves_v3_4
+    3300034: Leaves_v3_5
+    4300000: Leaves_v3_1
+    4300002: Leaves_v3_5
+    4300004: Leaves_v3_4
+    4300006: Leaves_v3_3
+    4300008: Leaves_v3_2
+    4300010: Leaves_v3
+    4300012: Base
+    4300014: branch01
+    4300016: Cylinder_5
+    4300018: Cylinder_4
+    4300020: branch02
+    4300022: Cylinder_3
+    4300024: Branch04
+    4300026: Cylinder_5_2
+    4300028: Cylinder_4_2
+    4300030: Branch04_1
+    4300032: Cylinder_5_3
+    4300034: Cylinder_4_3
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    importBlendShapes: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    hasTranslationDoF: 0
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 0
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

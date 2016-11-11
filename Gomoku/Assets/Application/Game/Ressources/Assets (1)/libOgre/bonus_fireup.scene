@@ -1,0 +1,21 @@
+<scene upAxis="y" unitsPerMeter="1" unitType="meters" formatVersion="1.0" minOgreVersion="Latest version" author="EasyOgreExporter">
+    <environment>
+        <colourAmbient r="0" g="0" b="0" />
+        <colourBackground r="0" g="0" b="0" />
+    </environment>
+    <nodes>
+        <node name="bonus_fireup" id="0" isTarget="false">
+            <position x="-0.0753763" y="0.177224" z="0.36164" />
+            <rotation qx="-0" qy="-0.997339" qz="-0" qw="-0.0729088" />
+            <scale x="2.20051" y="1.38139" z="1.44786" />
+            <entity name="bonus_fireup" id="1" meshFile="bonus_fireup.mesh" castShadows="true">
+                <subentities>
+                    <subentity index="0" materialName="_08_-_Default" />
+                    <subentity index="1" materialName="_03_-_Default" />
+                    <subentity index="2" materialName="_01_-_Default" />
+                    <subentity index="3" materialName="_07_-_Default" />
+                </subentities>
+            </entity>
+        </node>
+    </nodes>
+</scene>

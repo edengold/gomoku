@@ -1,0 +1,20 @@
+material "_03_-_Default"
+{
+	technique _03_-_Default_technique
+	{
+		pass _03_-_Default_standard
+		{
+			ambient 1 1 1 1
+			diffuse 1 1 1 1
+			specular 0 0 0 0 25.5
+			emissive 0 0 0 1
+
+			texture_unit _03_-_Default_Diffuse#0
+			{
+				texture flame3.jpg
+				tex_coord_set 0
+				colour_op modulate
+			}
+		}
+	}
+}

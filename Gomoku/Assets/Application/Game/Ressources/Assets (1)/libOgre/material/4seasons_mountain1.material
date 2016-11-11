@@ -1,0 +1,42 @@
+material "wood"
+{
+	technique wood_technique
+	{
+		pass wood_standard
+		{
+			shading phong
+			ambient 1 1 1 1
+			diffuse 1 1 1 1
+			specular 0 0 0 0 2.55
+			emissive 0 0 0 1
+
+			texture_unit wood_Diffuse#0
+			{
+				texture bark.jpg
+				tex_coord_set 0
+				colour_op modulate
+			}
+		}
+	}
+}
+material "summer"
+{
+	technique summer_technique
+	{
+		pass summer_standard
+		{
+			shading phong
+			ambient 1 1 1 1
+			diffuse 1 1 1 1
+			specular 0 0 0 0 2.55
+			emissive 0 0 0 1
+
+			texture_unit summer_Diffuse#0
+			{
+				texture summer2.jpg
+				tex_coord_set 0
+				colour_op modulate
+			}
+		}
+	}
+}

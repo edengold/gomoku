@@ -1,0 +1,20 @@
+<scene upAxis="y" unitsPerMeter="1" unitType="meters" formatVersion="1.0" minOgreVersion="Latest version" author="EasyOgreExporter">
+    <environment>
+        <colourAmbient r="0" g="0" b="0" />
+        <colourBackground r="0" g="0" b="0" />
+    </environment>
+    <nodes>
+        <node name="_4seasons_bridge" id="0" isTarget="false">
+            <position x="1.66548" y="3.37654" z="-1.82734" />
+            <rotation qx="-0.438791" qy="0.554493" qz="0.438791" qw="-0.554493" />
+            <scale x="0.393701" y="0.393701" z="0.393701" />
+            <entity name="_4seasons_bridge" id="1" meshFile="_4seasons_bridge.mesh" castShadows="true">
+                <subentities>
+                    <subentity index="0" materialName="Mat" />
+                    <subentity index="1" materialName="Mat.1" />
+                    <subentity index="2" materialName="Mat.2" />
+                </subentities>
+            </entity>
+        </node>
+    </nodes>
+</scene>

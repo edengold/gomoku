@@ -1,0 +1,88 @@
+material "_characterwire_000000000"
+{
+	technique _characterwire_000000000_technique
+	{
+		pass _characterwire_000000000_standard
+		{
+			shading phong
+			ambient 0.949 0.949 0.949 1
+			diffuse 0.949 0.949 0.949 1
+			specular 0 0 0 0 25.5
+			emissive 0 0 0 1
+		}
+	}
+}
+material "_characterEYES"
+{
+	technique _characterEYES_technique
+	{
+		pass _characterEYES_standard
+		{
+			shading phong
+			ambient 0.0275 0.0275 0.0275 1
+			diffuse 0.0275 0.0275 0.0275 1
+			specular 0 0 0 0 25.5
+			emissive 0 0 0 1
+		}
+	}
+}
+material "_characterFEETNLEGS"
+{
+	technique _characterFEETNLEGS_technique
+	{
+		pass _characterFEETNLEGS_standard
+		{
+			shading phong
+			ambient 0.5882 0.4353 0.4353 1
+			diffuse 0.5882 0.4353 0.4353 1
+			specular 0 0 0 0 25.5
+			emissive 0 0 0 1
+		}
+	}
+}
+material "_characterfoot"
+{
+	technique _characterfoot_technique
+	{
+		pass _characterfoot_standard
+		{
+			shading phong
+			ambient 0.698 0.0627 0.0627 1
+			diffuse 0.698 0.0627 0.0627 1
+			specular 0 0 0 0 25.5
+			emissive 0 0 0 1
+		}
+	}
+}
+material "_charactermeche"
+{
+	technique _charactermeche_technique
+	{
+		pass _charactermeche_standard
+		{
+			shading phong
+			ambient 1 1 1 1
+			diffuse 1 1 1 1
+			specular 0 0 0 0 25.5
+			emissive 0 0 0 1
+
+			scene_blend alpha_blend
+			depth_write off
+
+			texture_unit _charactermeche_Ambient#0
+			{
+				texture rope.png
+				tex_coord_set 0
+				colour_op add
+				alpha_op_ex source2 src_manual src_current 1
+			}
+
+			texture_unit _charactermeche_Diffuse#1
+			{
+				texture rope.png
+				tex_coord_set 0
+				colour_op modulate
+			}
+		}
+	}
+}

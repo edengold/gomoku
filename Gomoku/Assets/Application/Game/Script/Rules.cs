@@ -1,35 +1,100 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
+using System.Runtime.InteropServices;
 
-public class Rules : MonoBehaviour {
+public class Rules : MonoBehaviour
+{
+    #region DllImport
+    [DllImport("GomokuDll", CharSet = CharSet.Unicode)]
+    static extern int Add(int a, int b);
 
-    // Use this for initialization
-    public enum FaceSide {
-        FRONT = 0,
-        BACK = 1,
-        TOP = 2,
-        BOT = 3,
-        LEFT = 4,
-        RIGHT = 5
-    };
-    public Dictionary<FaceSide, List<GameObject>> PionTab = new Dictionary<FaceSide, List<GameObject>>();
+    [DllImport("GomokuDll", CharSet = CharSet.Unicode)]
+    static extern IntPtr CreateGomokuAPI();
 
-    void Awake()
+    [DllImport("GomokuDll", CharSet = CharSet.Unicode)]
+    static extern void DeleteGomokuAPI(IntPtr api);
+
+    [DllImport("GomokuDll", CharSet = CharSet.Unicode)]
+    static extern int GetTurn(IntPtr api);
+
+    [DllImport("GomokuDll", CharSet = CharSet.Unicode)]
+    static extern bool CanIPutHere(IntPtr api, int pos);
+
+    [DllImport("GomokuDll", CharSet = CharSet.Unicode)]
+    static extern int GetDeletedPion(IntPtr api);
+
+    [DllImport("GomokuDll", CharSet = CharSet.Unicode)]
+    static extern int GetNbWhitePrise(IntPtr api);
+
+    [DllImport("GomokuDll", CharSet = CharSet.Unicode)]
+    static extern int GetNbBlackPrise(IntPtr api);
+
+    [DllImport("GomokuDll", CharSet = CharSet.Unicode)]
+    static extern int GetVictoryTeam(IntPtr api);
+
+    [DllImport("GomokuDll", CharSet = CharSet.Unicode)]
+    static extern bool GetVictory(IntPtr api);
+    #endregion
+
+    private IntPtr _gomokuAPI;
+    public int Player;
+    public GomokuBoardManager Board;
+    public int NbBlackPrise;
+    public int NbBWhitePrise;
+
+    void Start()
     {
-        PionTab.Add(FaceSide.FRONT, new List<GameObject>());
-        PionTab.Add(FaceSide.BACK, new List<GameObject>());
-        PionTab.Add(FaceSide.TOP, new List<GameObject>());
-        PionTab.Add(FaceSide.BOT, new List<GameObject>());
-        PionTab.Add(FaceSide.LEFT, new List<GameObject>());
-        PionTab.Add(FaceSide.RIGHT, new List<GameObject>());
+        _gomokuAPI = CreateGomokuAPI();
     }
-    void Start () {
-	
-	}
-	
-	// Update is called once per frame
-	void Update () {
-	
-	}
+
+    #region FuncFromDll
+
+    public void GetTurn()
+    {
+        Player = GetTurn(_gomokuAPI);
+    }
+    public void GetNbBlackPrise()
+    {
+        NbBlackPrise = GetNbBlackPrise(_gomokuAPI);
+    }
+    public void GetNbWhitePrise()
+    {
+        NbBWhitePrise = GetNbWhitePrise(_gomokuAPI);
+    }
+    public bool GetVictory()
+    {
+        return GetVictory(_gomokuAPI);
+    }
+    public int GetVictoryTeam()
+    {
+        return GetVictoryTeam(_gomokuAPI);
+    }
+    public void GetDeletedPion()
+    {
+        int tmp;
+        if ((tmp = GetDeletedPion(_gomokuAPI)) != -1)
+        {
+
+        }
+    }
+    public bool CanIPutHere(int pos)
+    {
+        return CanIPutHere(_gomokuAPI, pos);
+    }
+    #endregion
+
+    void Update()
+    {
+        GetTurn();
+        GetNbBlackPrise(_gomokuAPI);
+        GetNbWhitePrise(_gomokuAPI);
+    }
+
+    public void OnDestroy()
+    {
+        Debug.Log("GomokuAPI Destroy");
+        DeleteGomokuAPI(_gomokuAPI);
+    }
 }

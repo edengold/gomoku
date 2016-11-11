@@ -1,0 +1,19 @@
+<scene upAxis="y" unitsPerMeter="1" unitType="meters" formatVersion="1.0" minOgreVersion="Latest version" author="EasyOgreExporter">
+    <environment>
+        <colourAmbient r="0" g="0" b="0" />
+        <colourBackground r="0" g="0" b="0" />
+    </environment>
+    <nodes>
+        <node name="_4seasons_tree_pine" id="0" isTarget="false">
+            <position x="0" y="5.88332" z="-4.53919e-007" />
+            <rotation qx="-0.707107" qy="-0" qz="-0" qw="-0.707107" />
+            <scale x="0.141118" y="0.141118" z="0.141118" />
+            <entity name="_4seasons_tree_pine" id="1" meshFile="_4seasons_tree_pine.mesh" castShadows="true">
+                <subentities>
+                    <subentity index="0" materialName="_01_-_Default" />
+                    <subentity index="1" materialName="_02_-_Default" />
+                </subentities>
+            </entity>
+        </node>
+    </nodes>
+</scene>

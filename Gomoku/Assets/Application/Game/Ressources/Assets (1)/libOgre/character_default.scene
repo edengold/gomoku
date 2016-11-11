@@ -1,0 +1,22 @@
+<scene upAxis="y" unitsPerMeter="1" unitType="meters" formatVersion="1.0" minOgreVersion="Latest version" author="EasyOgreExporter">
+    <environment>
+        <colourAmbient r="0" g="0" b="0" />
+        <colourBackground r="0" g="0" b="0" />
+    </environment>
+    <nodes>
+        <node name="character_default" id="0" isTarget="false">
+            <position x="-0.604553" y="-0.0151752" z="-0.682382" />
+            <rotation qx="-0" qy="-0" qz="-0" qw="-1" />
+            <scale x="0.749263" y="0.749263" z="0.749263" />
+            <entity name="character_default" id="1" meshFile="character_default.mesh" castShadows="true">
+                <subentities>
+                    <subentity index="0" materialName="_characterwire_000000000" />
+                    <subentity index="1" materialName="_characterEYES" />
+                    <subentity index="2" materialName="_characterFEETNLEGS" />
+                    <subentity index="3" materialName="_characterfoot" />
+                    <subentity index="4" materialName="_charactermeche" />
+                </subentities>
+            </entity>
+        </node>
+    </nodes>
+</scene>

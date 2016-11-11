@@ -1,0 +1,19 @@
+<scene upAxis="y" unitsPerMeter="1" unitType="meters" formatVersion="1.0" minOgreVersion="Latest version" author="EasyOgreExporter">
+    <environment>
+        <colourAmbient r="0" g="0" b="0" />
+        <colourBackground r="0" g="0" b="0" />
+    </environment>
+    <nodes>
+        <node name="_4seasons_tree_tall" id="0" isTarget="false">
+            <position x="-1.14713" y="6.71341" z="-0.39674" />
+            <rotation qx="-0.775163" qy="-0.536954" qz="-0.126857" qw="-0.307749" />
+            <scale x="0.178979" y="0.178979" z="0.178979" />
+            <entity name="_4seasons_tree_tall" id="1" meshFile="_4seasons_tree_tall.mesh" castShadows="true">
+                <subentities>
+                    <subentity index="0" materialName="_01_-_Default" />
+                    <subentity index="1" materialName="_02_-_Default" />
+                </subentities>
+            </entity>
+        </node>
+    </nodes>
+</scene>

@@ -1,0 +1,148 @@
+fileFormatVersion: 2
+guid: eb32d037f9df5fb4eb8cd5392d89fade
+timeCreated: 1477647114
+licenseType: Free
+ModelImporter:
+  serializedVersion: 19
+  fileIDToRecycleName:
+    100000: Base
+    100002: branch_low01
+    100004: branch_low01_1
+    100006: branch_low01_2
+    100008: branch_low01_3
+    100010: branch_low01_4
+    100012: //RootNode
+    100014: Leaves_v3
+    100016: Leaves_v3_1
+    100018: Leaves_v3_2
+    100020: Leaves_v3_3
+    100022: Leaves_v3_4
+    100024: Leaves_v3_5
+    100026: Leaves_v3_6
+    100028: Leaves_v3_7
+    100030: Leaves_v3_8
+    400000: Base
+    400002: branch_low01
+    400004: branch_low01_1
+    400006: branch_low01_2
+    400008: branch_low01_3
+    400010: branch_low01_4
+    400012: //RootNode
+    400014: Leaves_v3
+    400016: Leaves_v3_1
+    400018: Leaves_v3_2
+    400020: Leaves_v3_3
+    400022: Leaves_v3_4
+    400024: Leaves_v3_5
+    400026: Leaves_v3_6
+    400028: Leaves_v3_7
+    400030: Leaves_v3_8
+    2300000: Base
+    2300002: branch_low01
+    2300004: branch_low01_1
+    2300006: branch_low01_2
+    2300008: branch_low01_3
+    2300010: branch_low01_4
+    2300012: Leaves_v3
+    2300014: Leaves_v3_1
+    2300016: Leaves_v3_2
+    2300018: Leaves_v3_3
+    2300020: Leaves_v3_4
+    2300022: Leaves_v3_5
+    2300024: Leaves_v3_6
+    2300026: Leaves_v3_7
+    2300028: Leaves_v3_8
+    3300000: Base
+    3300002: branch_low01
+    3300004: branch_low01_1
+    3300006: branch_low01_2
+    3300008: branch_low01_3
+    3300010: branch_low01_4
+    3300012: Leaves_v3
+    3300014: Leaves_v3_1
+    3300016: Leaves_v3_2
+    3300018: Leaves_v3_3
+    3300020: Leaves_v3_4
+    3300022: Leaves_v3_5
+    3300024: Leaves_v3_6
+    3300026: Leaves_v3_7
+    3300028: Leaves_v3_8
+    4300000: Leaves_v3_8
+    4300002: Leaves_v3_7
+    4300004: Leaves_v3_6
+    4300006: Leaves_v3_5
+    4300008: Leaves_v3_4
+    4300010: Leaves_v3_3
+    4300012: Leaves_v3_2
+    4300014: Leaves_v3_1
+    4300016: branch_low01_4
+    4300018: branch_low01_3
+    4300020: branch_low01_2
+    4300022: branch_low01_1
+    4300024: Leaves_v3
+    4300026: Base
+    4300028: branch_low01
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    importBlendShapes: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    hasTranslationDoF: 0
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 0
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

@@ -1,0 +1,19 @@
+<scene upAxis="y" unitsPerMeter="1" unitType="meters" formatVersion="1.0" minOgreVersion="Latest version" author="EasyOgreExporter">
+    <environment>
+        <colourAmbient r="0" g="0" b="0" />
+        <colourBackground r="0" g="0" b="0" />
+    </environment>
+    <nodes>
+        <node name="_4seasons_floating_rock" id="0" isTarget="false">
+            <position x="-2.15205" y="-78.8763" z="-26.8428" />
+            <rotation qx="0.707107" qy="3.07195e-008" qz="-3.07195e-008" qw="-0.707107" />
+            <scale x="0.667009" y="0.667009" z="0.667009" />
+            <entity name="_4seasons_floating_rock" id="1" meshFile="_4seasons_floating_rock.mesh" castShadows="true">
+                <subentities>
+                    <subentity index="0" materialName="wood" />
+                    <subentity index="1" materialName="summer" />
+                </subentities>
+            </entity>
+        </node>
+    </nodes>
+</scene>

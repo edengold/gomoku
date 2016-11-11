@@ -1,0 +1,109 @@
+material "_08_-_Default"
+{
+	technique _08_-_Default_technique
+	{
+		pass _08_-_Default_standard
+		{
+			shading phong
+			ambient 1 1 1 1
+			diffuse 1 1 1 1
+			specular 0 0 0 0 25.5
+			emissive 0 0 0 1
+
+			texture_unit _08_-_Default_Diffuse#0
+			{
+				texture bark.jpg
+				tex_coord_set 0
+				colour_op modulate
+			}
+		}
+	}
+}
+material "_07_-_Default"
+{
+	technique _07_-_Default_technique
+	{
+		pass _07_-_Default_standard
+		{
+			shading phong
+			ambient 1 1 1 1
+			diffuse 1 1 1 1
+			specular 0 0 0 0 25.5
+			emissive 0 0 0 1
+
+			texture_unit _07_-_Default_Diffuse#0
+			{
+				texture bark_light.jpg
+				tex_coord_set 0
+				colour_op modulate
+			}
+		}
+	}
+}
+material "_bomb-default06___Default"
+{
+	technique _bomb-default06___Default_technique
+	{
+		pass _bomb-default06___Default_standard
+		{
+			shading phong
+			ambient 1 1 1 1
+			diffuse 1 1 1 1
+			specular 0 0 0 0 25.5
+			emissive 0 0 0 1
+
+			scene_blend alpha_blend
+			depth_write off
+
+			texture_unit _bomb-default06___Default_Ambient#0
+			{
+				texture rope.png
+				tex_coord_set 0
+				colour_op add
+				alpha_op_ex source2 src_manual src_current 1
+			}
+
+			texture_unit _bomb-default06___Default_Diffuse#1
+			{
+				texture rope.png
+				tex_coord_set 0
+				colour_op modulate
+			}
+		}
+	}
+}
+material "_bomb-defaultwire_000000000"
+{
+	technique _bomb-defaultwire_000000000_technique
+	{
+		pass _bomb-defaultwire_000000000_standard
+		{
+			shading phong
+			ambient 0.0196 0.0196 0.0196 1
+			diffuse 0.0196 0.0196 0.0196 1
+			specular 0 0 0 0 25.5
+			emissive 0 0 0 1
+		}
+	}
+}
+material "_bomb-defaulttest"
+{
+	technique _bomb-defaulttest_technique
+	{
+		pass _bomb-defaulttest_standard
+		{
+			shading phong
+			ambient 1 1 1 1
+			diffuse 1 1 1 1
+			specular 0 0 0 0 25.5
+			emissive 0 0 0 1
+
+			texture_unit _bomb-defaulttest_Diffuse#0
+			{
+				texture purple.jpg
+				tex_coord_set 0
+				colour_op modulate
+			}
+		}
+	}
+}

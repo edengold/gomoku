@@ -1,0 +1,18 @@
+<scene upAxis="y" unitsPerMeter="1" unitType="meters" formatVersion="1.0" minOgreVersion="Latest version" author="EasyOgreExporter">
+    <environment>
+        <colourAmbient r="0" g="0" b="0" />
+        <colourBackground r="0" g="0" b="0" />
+    </environment>
+    <nodes>
+        <node name="explosion_arrow_red_90" id="0" isTarget="false">
+            <position x="0.689554" y="-0.0351751" z="1.154" />
+            <rotation qx="-0" qy="-0.92388" qz="-0" qw="-0.382683" />
+            <scale x="1" y="1" z="1" />
+            <entity name="explosion_arrow_red_90" id="1" meshFile="explosion_arrow_red_90.mesh" castShadows="true">
+                <subentities>
+                    <subentity index="0" materialName="_01_-_Default" />
+                </subentities>
+            </entity>
+        </node>
+    </nodes>
+</scene>

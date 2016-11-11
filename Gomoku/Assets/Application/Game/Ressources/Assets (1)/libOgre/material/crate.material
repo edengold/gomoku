@@ -1,0 +1,21 @@
+material "_crateLowPolyCrate"
+{
+	technique _crateLowPolyCrate_technique
+	{
+		pass _crateLowPolyCrate_standard
+		{
+			shading phong
+			ambient 0.4651 0.4651 0.4651 1
+			diffuse 1 1 1 1
+			specular 0.0906 0.0649 0.0485 1 100
+			emissive 0 0 0 1
+
+			texture_unit _crateLowPolyCrate_Diffuse#0
+			{
+				texture crate_1.jpg
+				tex_coord_set 0
+				colour_op modulate
+			}
+		}
+	}
+}

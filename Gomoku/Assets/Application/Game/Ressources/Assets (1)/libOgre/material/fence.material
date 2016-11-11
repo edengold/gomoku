@@ -1,0 +1,84 @@
+material "_02_-_Default"
+{
+	technique _02_-_Default_technique
+	{
+		pass _02_-_Default_standard
+		{
+			shading phong
+			ambient 1 1 1 1
+			diffuse 1 1 1 1
+			specular 0 0 0 0 25.5
+			emissive 0 0 0 1
+
+			texture_unit _02_-_Default_Diffuse#0
+			{
+				texture bark_light.jpg
+				tex_coord_set 0
+				colour_op modulate
+			}
+		}
+	}
+}
+material "_03_-_Default"
+{
+	technique _03_-_Default_technique
+	{
+		pass _03_-_Default_standard
+		{
+			shading phong
+			ambient 1 1 1 1
+			diffuse 1 1 1 1
+			specular 0 0 0 0 25.5
+			emissive 0 0 0 1
+
+			texture_unit _03_-_Default_Diffuse#0
+			{
+				texture grey.jpg
+				tex_coord_set 0
+				colour_op modulate
+			}
+		}
+	}
+}
+material "Material__29"
+{
+	technique Material__29_technique
+	{
+		pass Material__29_standard
+		{
+			shading phong
+			ambient 1 1 1 1
+			diffuse 1 1 1 1
+			specular 0 0 0 0 25.5
+			emissive 0 0 0 1
+
+			texture_unit Material__29_Diffuse#0
+			{
+				texture bark.jpg
+				tex_coord_set 0
+				colour_op modulate
+			}
+		}
+	}
+}
+material "_07_-_Default"
+{
+	technique _07_-_Default_technique
+	{
+		pass _07_-_Default_standard
+		{
+			shading phong
+			ambient 1 1 1 1
+			diffuse 1 1 1 1
+			specular 0 0 0 0 25.5
+			emissive 0 0 0 1
+
+			texture_unit _07_-_Default_Diffuse#0
+			{
+				texture summer.jpg
+				tex_coord_set 0
+				colour_op modulate
+			}
+		}
+	}
+}

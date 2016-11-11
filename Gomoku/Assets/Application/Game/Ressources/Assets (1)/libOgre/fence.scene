@@ -1,0 +1,21 @@
+<scene upAxis="y" unitsPerMeter="1" unitType="meters" formatVersion="1.0" minOgreVersion="Latest version" author="EasyOgreExporter">
+    <environment>
+        <colourAmbient r="0" g="0" b="0" />
+        <colourBackground r="0" g="0" b="0" />
+    </environment>
+    <nodes>
+        <node name="fence" id="0" isTarget="false">
+            <position x="-0.0788487" y="0.816468" z="-0.00719239" />
+            <rotation qx="-0.0834037" qy="-0.0834037" qz="0.702171" qw="-0.702171" />
+            <scale x="0.6" y="0.6" z="0.6" />
+            <entity name="fence" id="1" meshFile="fence.mesh" castShadows="true">
+                <subentities>
+                    <subentity index="0" materialName="_02_-_Default" />
+                    <subentity index="1" materialName="_03_-_Default" />
+                    <subentity index="2" materialName="Material__29" />
+                    <subentity index="3" materialName="_07_-_Default" />
+                </subentities>
+            </entity>
+        </node>
+    </nodes>
+</scene>

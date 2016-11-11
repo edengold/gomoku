@@ -1,0 +1,42 @@
+material "Mat"
+{
+	technique Mat_technique
+	{
+		pass Mat_standard
+		{
+			shading phong
+			ambient 0 0 0 1
+			diffuse 0.673469 0.43321 0.283859 1
+			specular 0.2 0.2 0.2 1 127.5
+			emissive 0 0 0 1
+		}
+	}
+}
+material "Mat.1"
+{
+	technique Mat.1_technique
+	{
+		pass Mat.1_standard
+		{
+			shading phong
+			ambient 0 0 0 1
+			diffuse 0.265306 0.112444 0.0701636 1
+			specular 0.2 0.2 0.2 1 127.5
+			emissive 0 0 0 1
+		}
+	}
+}
+material "Mat.2"
+{
+	technique Mat.2_technique
+	{
+		pass Mat.2_standard
+		{
+			shading phong
+			ambient 0 0 0 1
+			diffuse 0.357143 0.183737 0.135773 1
+			specular 0.2 0.2 0.2 1 127.5
+			emissive 0 0 0 1
+		}
+	}
+}

@@ -1,0 +1,48 @@
+<scene upAxis="y" unitsPerMeter="1" unitType="meters" formatVersion="1.0" minOgreVersion="Latest version" author="EasyOgreExporter">
+    <environment>
+        <colourAmbient r="0" g="0" b="0" />
+        <colourBackground r="0" g="0" b="0" />
+    </environment>
+    <nodes>
+        <node name="scn_scene_1" id="0" isTarget="false">
+            <position x="25.533" y="0.258068" z="-29.1402" />
+            <rotation qx="0.227653" qy="0.381693" qz="0.611677" qw="-0.654473" />
+            <scale x="0.276146" y="0.276146" z="0.276146" />
+            <entity name="scn_scene_1" id="1" meshFile="scn_scene_1.mesh" castShadows="true">
+                <subentities>
+                    <subentity index="0" materialName="Mat.1" />
+                    <subentity index="1" materialName="Mat.2" />
+                    <subentity index="2" materialName="_01_-_Default" />
+                    <subentity index="3" materialName="_01_-_Default_1" />
+                    <subentity index="4" materialName="_02_-_Default" />
+                    <subentity index="5" materialName="_02_-_Default_1" />
+                    <subentity index="6" materialName="_03_-_Default" />
+                    <subentity index="7" materialName="Material__29" />
+                    <subentity index="8" materialName="_07_-_Default" />
+                    <subentity index="9" materialName="_01_-_Default_2" />
+                    <subentity index="10" materialName="_02_-_Default_2" />
+                    <subentity index="11" materialName="_01_-_Default_3" />
+                    <subentity index="12" materialName="_01_-_Default_4" />
+                    <subentity index="13" materialName="bark" />
+                    <subentity index="14" materialName="_02_-_Default_3" />
+                    <subentity index="15" materialName="_02_-_Default_4" />
+                    <subentity index="16" materialName="_01_-_Default_5" />
+                    <subentity index="17" materialName="_crateLowPolyCrate" />
+                    <subentity index="18" materialName="wood" />
+                    <subentity index="19" materialName="summer" />
+                    <subentity index="20" materialName="wood_1" />
+                    <subentity index="21" materialName="summer_1" />
+                    <subentity index="22" materialName="wood_2" />
+                    <subentity index="23" materialName="summer_2" />
+                    <subentity index="24" materialName="wood_3" />
+                    <subentity index="25" materialName="summer_3" />
+                    <subentity index="26" materialName="_01_-_Default_6" />
+                    <subentity index="27" materialName="_08_-_Default" />
+                    <subentity index="28" materialName="_07_-_Default_1" />
+                    <subentity index="29" materialName="_01_-_Default_7" />
+                    <subentity index="30" materialName="_03_-_Default_1" />
+                </subentities>
+            </entity>
+        </node>
+    </nodes>
+</scene>

@@ -1,0 +1,22 @@
+Logging to file c:\users\ratch\dropbox\{epitech.}\cpp_indie_studio\assets\libogre\easyOgreExporter.log
+Found node: explosion_arrow_red_270
+Found mesh node: explosion_arrow_red_270
+Info: Number of map channel (UV) found in this mesh : 1
+Exporting 1 textures...
+Exporting 0 texture from Bitmap...
+Texture Index: 0
+Texture Name: Map #1
+Texture Name for Mask: 
+Updated texture location: C:\Users\ratch\Dropbox\{Epitech.}\cpp_indie_studio\Assets\textures\flame1.jpg.
+Updated texture Mask location: .
+Diffuse channel texture.
+Writing explosion_arrow_red_270 mesh binary...
+Info: Create Ogre submeshs
+Info: create submesh : 0
+Info: Create mesh bounding box
+Info: Create mesh edge list
+Info: Create mesh tangents
+Info: Write mesh file : c:\users\ratch\dropbox\{epitech.}\cpp_indie_studio\assets\libogre\mesh\explosion_arrow_red_270.mesh
+Writing materials data...
+Copy material textures files
+Info: export done.

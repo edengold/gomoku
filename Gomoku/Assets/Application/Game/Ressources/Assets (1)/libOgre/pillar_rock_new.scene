@@ -1,0 +1,18 @@
+<scene upAxis="y" unitsPerMeter="1" unitType="meters" formatVersion="1.0" minOgreVersion="Latest version" author="EasyOgreExporter">
+    <environment>
+        <colourAmbient r="0" g="0" b="0" />
+        <colourBackground r="0" g="0" b="0" />
+    </environment>
+    <nodes>
+        <node name="pillar_rock_new" id="0" isTarget="false">
+            <position x="-0.0347623" y="3.2181" z="0.0111846" />
+            <rotation qx="-0" qy="-0" qz="-0" qw="-1" />
+            <scale x="1" y="1" z="1" />
+            <entity name="pillar_rock_new" id="1" meshFile="pillar_rock_new.mesh" castShadows="true">
+                <subentities>
+                    <subentity index="0" materialName="_01_-_Default" />
+                </subentities>
+            </entity>
+        </node>
+    </nodes>
+</scene>

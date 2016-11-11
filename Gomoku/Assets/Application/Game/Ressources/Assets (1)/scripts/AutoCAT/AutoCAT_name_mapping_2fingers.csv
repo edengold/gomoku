@@ -1,0 +1,124 @@
+##***************************************************************
+##* CAT_AutoRigged_name_mapping.csv
+##* This file is part of the Mixamo Auto CAT script.
+##*
+##* This file defines a list of name mapping
+##* from the original bones to the biped bones.
+##*
+##*
+##* by Mixamo - author Ofer Zelichover, updated by Dan Babcock
+##* 
+##***************************************************************
+## Use '#' sign at the beginning of a line for comments.
+## Line format:
+## CAT_Address;MixamoNameSpace:BoneObjName;AlignmentMode;Conversion Matrix (matrix3 value)
+## AlignmentMode can be: P - position; R - rotation; D - Dircetion (the bone will be rotated towards it's child bone); - no alignment.
+##   Combinations are possible: PR, PD
+
+### Hips
+SceneRootNode.Hub;CharName:Hips;PR;matrix3 [0,1,0] [0,0,1] [1,0,0] [0,0,0]
+
+
+### The legs (especially the feet) are very problematic, and the order of the bones is very important!
+
+### Left leg
+SceneRootNode.Hub.Limb[0].Palm.Digit[0].DigitSegParams[0];CharName:LeftToeBase;-;matrix3 [0,-1,0] [1,0,0] [0,0,1] [0,0,0]
+SceneRootNode.Hub.Limb[0].Platform;CharName:LeftToeBase;P;matrix3 [0,1,0] [0,0,1] [1,0,0] [0,0,0]
+SceneRootNode.Hub.Limb[0].Palm;CharName:LeftFoot;PR;matrix3 [0,1,0] [0,0,1] [1,0,0] [0,0,0]
+SceneRootNode.Hub.Limb[0].Palm.Digit[0].DigitSegParams[0];CharName:LeftToeBase;PR;matrix3 [0,1,0] [0,0,1] [1,0,0] [0,0,0]
+SceneRootNode.Hub.Limb[0].Palm.Digit[0].DigitSegParams[1];CharName:LeftToe_End;PR;matrix3 [0,1,0] [0,0,1] [1,0,0] [0,0,0]
+SceneRootNode.Hub.Limb[0].LimbBone[0].BoneSeg[0];CharName:LeftUpLeg;P;matrix3 [0,1,0] [0,0,1] [1,0,0] [0,0,0]
+SceneRootNode.Hub.Limb[0].LimbBone[1].BoneSeg[0];CharName:LeftLeg;P;matrix3 [0,1,0] [0,0,1] [1,0,0] [0,0,0]
+
+### Right leg
+SceneRootNode.Hub.Limb[1].Palm.Digit[0].DigitSegParams[0];CharName:RightToeBase;-;matrix3 [0,-1,0] [1,0,0] [0,0,1] [0,0,0]
+SceneRootNode.Hub.Limb[1].Platform;CharName:RightToeBase;P;matrix3 [0,1,0] [0,0,1] [1,0,0] [0,0,0]
+SceneRootNode.Hub.Limb[1].Palm;CharName:RightFoot;PR;matrix3 [0,1,0] [0,0,1] [1,0,0] [0,0,0]
+SceneRootNode.Hub.Limb[1].Palm.Digit[0].DigitSegParams[0];CharName:RightToeBase;PR;matrix3 [0,1,0] [0,0,1] [1,0,0] [0,0,0]
+SceneRootNode.Hub.Limb[1].Palm.Digit[0].DigitSegParams[1];CharName:RightToe_End;PR;matrix3 [0,1,0] [0,0,1] [1,0,0] [0,0,0]
+SceneRootNode.Hub.Limb[1].LimbBone[0].BoneSeg[0];CharName:RightUpLeg;P;matrix3 [0,1,0] [0,0,1] [1,0,0] [0,0,0]
+SceneRootNode.Hub.Limb[1].LimbBone[1].BoneSeg[0];CharName:RightLeg;P;matrix3 [0,1,0] [0,0,1] [1,0,0] [0,0,0]
+
+
+
+### Spine
+SceneRootNode.Hub.Spine[0].SpineLink[0];CharName:Spine;PR;matrix3 [0,1,0] [0,0,1] [1,0,0] [0,0,0]
+SceneRootNode.Hub.Spine[0].Hub;CharName:Neck;PR;matrix3 [0,1,0] [0,0,1] [1,0,0] [0,0,0]
+SceneRootNode.Hub.Spine[0].SpineLink[1];CharName:Spine1;PR;matrix3 [0,1,0] [0,0,1] [1,0,0] [0,0,0]
+SceneRootNode.Hub.Spine[0].SpineLink[2];CharName:Spine2;PR;matrix3 [0,1,0] [0,0,1] [1,0,0] [0,0,0]
+
+### Neck
+SceneRootNode.Hub.Spine[0].Hub.Spine[0].SpineLink[0];CharName:Neck;PR;matrix3 [0,1,0] [0,0,1] [1,0,0] [0,0,0]
+SceneRootNode.Hub.Spine[0].Hub.Spine[0].SpineLink[1];CharName:Neck1;PR;matrix3 [0,1,0] [0,0,1] [1,0,0] [0,0,0]
+
+### Head
+SceneRootNode.Hub.Spine[0].Hub.Spine[0].Hub;CharName:Head;PR;matrix3 [0,1,0] [0,0,1] [1,0,0] [0,0,0]
+SceneRootNode.Hub.Spine[0].Hub.Spine[0].Hub.ArbBone[0];CharName:HeadTop_End;PR;matrix3 [0,1,0] [0,0,1] [1,0,0] [0,0,0]
+
+
+### Left Arm
+SceneRootNode.Hub.Spine[0].Hub.Limb[0].CollarBone;CharName:LeftShoulder;PR;matrix3 [0,1,0] [-1,0,0] [0,0,1] [0,0,0]
+SceneRootNode.Hub.Spine[0].Hub.Limb[0].LimbBone[0].BoneSeg[0];CharName:LeftArm;PR;matrix3 [0,1,0] [-1,0,0] [0,0,1] [0,0,0]
+SceneRootNode.Hub.Spine[0].Hub.Limb[0].LimbBone[1].BoneSeg[0];CharName:LeftForeArm;PR;matrix3 [0,1,0] [-1,0,0] [0,0,1] [0,0,0]
+SceneRootNode.Hub.Spine[0].Hub.Limb[0].Palm;CharName:LeftHand;PR;matrix3 [0,1,0] [0,0,-1] [-1,0,0] [0,0,0]
+SceneRootNode.Hub.Spine[0].Hub.Limb[0].LimbBone[0].BoneSeg[0];CharName:LeftArm;PR;matrix3 [0,1,0] [-1,0,0] [0,0,1] [0,0,0]
+SceneRootNode.Hub.Spine[0].Hub.Limb[0].LimbBone[1].BoneSeg[0];CharName:LeftForeArm;PR;matrix3 [0,1,0] [-1,0,0] [0,0,1] [0,0,0]
+
+SceneRootNode.Hub.Spine[0].Hub.Limb[0].LimbBone[0].BoneSeg[0];CharName:LeftArm;PR;matrix3 [0,1,0] [-1,0,0] [0,0,1] [0,0,0]
+SceneRootNode.Hub.Spine[0].Hub.Limb[0].LimbBone[1].BoneSeg[0];CharName:LeftForeArm;PR;matrix3 [0,1,0] [-1,0,0] [0,0,1] [0,0,0]
+SceneRootNode.Hub.Spine[0].Hub.Limb[0].Palm;CharName:LeftHand;PR;matrix3 [0,1,0] [0,0,-1] [-1,0,0] [0,0,0]
+SceneRootNode.Hub.Spine[0].Hub.Limb[0].LimbBone[0].BoneSeg[0];CharName:LeftArm;PR;matrix3 [0,1,0] [-1,0,0] [0,0,1] [0,0,0]
+SceneRootNode.Hub.Spine[0].Hub.Limb[0].LimbBone[1].BoneSeg[0];CharName:LeftForeArm;PR;matrix3 [0,1,0] [-1,0,0] [0,0,1] [0,0,0]
+SceneRootNode.Hub.Spine[0].Hub.Limb[0].LimbBone[0].BoneSeg[0];CharName:LeftArm;PR;matrix3 [0,1,0] [-1,0,0] [0,0,1] [0,0,0]
+SceneRootNode.Hub.Spine[0].Hub.Limb[0].LimbBone[1].BoneSeg[0];CharName:LeftForeArm;PR;matrix3 [0,1,0] [-1,0,0] [0,0,1] [0,0,0]
+SceneRootNode.Hub.Spine[0].Hub.Limb[0].Palm;CharName:LeftHand;PR;matrix3 [0,1,0] [0,0,-1] [-1,0,0] [0,0,0]
+SceneRootNode.Hub.Spine[0].Hub.Limb[0].LimbBone[0].BoneSeg[0];CharName:LeftArm;PR;matrix3 [0,1,0] [-1,0,0] [0,0,1] [0,0,0]
+SceneRootNode.Hub.Spine[0].Hub.Limb[0].LimbBone[1].BoneSeg[0];CharName:LeftForeArm;PR;matrix3 [0,1,0] [-1,0,0] [0,0,1] [0,0,0]
+SceneRootNode.Hub.Spine[0].Hub.Limb[0].LimbBone[0].BoneSeg[0];CharName:LeftArm;PR;matrix3 [0,1,0] [-1,0,0] [0,0,1] [0,0,0]
+SceneRootNode.Hub.Spine[0].Hub.Limb[0].LimbBone[1].BoneSeg[0];CharName:LeftForeArm;PR;matrix3 [0,1,0] [-1,0,0] [0,0,1] [0,0,0]
+SceneRootNode.Hub.Spine[0].Hub.Limb[0].Palm;CharName:LeftHand;PR;matrix3 [0,1,0] [0,0,-1] [-1,0,0] [0,0,0]
+SceneRootNode.Hub.Spine[0].Hub.Limb[0].LimbBone[0].BoneSeg[0];CharName:LeftArm;PR;matrix3 [0,1,0] [-1,0,0] [0,0,1] [0,0,0]
+SceneRootNode.Hub.Spine[0].Hub.Limb[0].LimbBone[1].BoneSeg[0];CharName:LeftForeArm;PR;matrix3 [0,1,0] [-1,0,0] [0,0,1] [0,0,0]
+
+SceneRootNode.Hub.Spine[0].Hub.Limb[0].Palm.Digit[0].DigitSegParams[0];CharName:LeftHandThumb1;PR;matrix3 [0,1,0] [0,0,-1] [-1,0,0] [0,0,0]
+SceneRootNode.Hub.Spine[0].Hub.Limb[0].Palm.Digit[0].DigitSegParams[1];CharName:LeftHandThumb2;PR;matrix3 [0,1,0] [0,0,-1] [-1,0,0] [0,0,0]
+SceneRootNode.Hub.Spine[0].Hub.Limb[0].Palm.Digit[0].DigitSegParams[2];CharName:LeftHandThumb3;PR;matrix3 [0,1,0] [0,0,-1] [-1,0,0] [0,0,0]
+SceneRootNode.Hub.Spine[0].Hub.Limb[0].Palm.Digit[0].DigitSegParams[3];CharName:LeftHandThumb4;PR;matrix3 [0,1,0] [0,0,-1] [-1,0,0] [0,0,0]
+SceneRootNode.Hub.Spine[0].Hub.Limb[0].Palm.Digit[1].DigitSegParams[0];CharName:LeftHandIndex1;PR;matrix3 [0,1,0] [0,0,-1] [-1,0,0] [0,0,0]
+SceneRootNode.Hub.Spine[0].Hub.Limb[0].Palm.Digit[1].DigitSegParams[1];CharName:LeftHandIndex2;PR;matrix3 [0,1,0] [0,0,-1] [-1,0,0] [0,0,0]
+SceneRootNode.Hub.Spine[0].Hub.Limb[0].Palm.Digit[1].DigitSegParams[2];CharName:LeftHandIndex3;PR;matrix3 [0,1,0] [0,0,-1] [-1,0,0] [0,0,0]
+SceneRootNode.Hub.Spine[0].Hub.Limb[0].Palm.Digit[1].DigitSegParams[3];CharName:LeftHandIndex4;PR;matrix3 [0,1,0] [0,0,-1] [-1,0,0] [0,0,0]
+
+
+### Right Arm
+SceneRootNode.Hub.Spine[0].Hub.Limb[1].CollarBone;CharName:RightShoulder;PR;matrix3 [0,1,0] [1,0,0] [0,0,-1] [0,0,0]
+SceneRootNode.Hub.Spine[0].Hub.Limb[1].LimbBone[0].BoneSeg[0];CharName:RightArm;PR;matrix3 [0,1,0] [1,0,0] [0,0,-1] [0,0,0]
+SceneRootNode.Hub.Spine[0].Hub.Limb[1].LimbBone[1].BoneSeg[0];CharName:RightForeArm;PR;matrix3 [0,1,0] [1,0,0] [0,0,-1] [0,0,0]
+SceneRootNode.Hub.Spine[0].Hub.Limb[1].Palm;CharName:RightHand;PR;matrix3 [0,1,0] [0,0,-1] [-1,0,0] [0,0,0]
+SceneRootNode.Hub.Spine[0].Hub.Limb[1].LimbBone[0].BoneSeg[0];CharName:RightArm;PR;matrix3 [0,1,0] [1,0,0] [0,0,-1] [0,0,0]
+SceneRootNode.Hub.Spine[0].Hub.Limb[1].LimbBone[1].BoneSeg[0];CharName:RightForeArm;PR;matrix3 [0,1,0] [1,0,0] [0,0,-1] [0,0,0]
+
+SceneRootNode.Hub.Spine[0].Hub.Limb[1].LimbBone[0].BoneSeg[0];CharName:RightArm;PR;matrix3 [0,1,0] [1,0,0] [0,0,-1] [0,0,0]
+SceneRootNode.Hub.Spine[0].Hub.Limb[1].LimbBone[1].BoneSeg[0];CharName:RightForeArm;PR;matrix3 [0,1,0] [1,0,0] [0,0,-1] [0,0,0]
+SceneRootNode.Hub.Spine[0].Hub.Limb[1].Palm;CharName:RightHand;PR;matrix3 [0,1,0] [0,0,-1] [-1,0,0] [0,0,0]
+SceneRootNode.Hub.Spine[0].Hub.Limb[1].LimbBone[0].BoneSeg[0];CharName:RightArm;PR;matrix3 [0,1,0] [1,0,0] [0,0,-1] [0,0,0]
+SceneRootNode.Hub.Spine[0].Hub.Limb[1].LimbBone[1].BoneSeg[0];CharName:RightForeArm;PR;matrix3 [0,1,0] [1,0,0] [0,0,-1] [0,0,0]
+SceneRootNode.Hub.Spine[0].Hub.Limb[1].LimbBone[0].BoneSeg[0];CharName:RightArm;PR;matrix3 [0,1,0] [1,0,0] [0,0,-1] [0,0,0]
+SceneRootNode.Hub.Spine[0].Hub.Limb[1].LimbBone[1].BoneSeg[0];CharName:RightForeArm;PR;matrix3 [0,1,0] [1,0,0] [0,0,-1] [0,0,0]
+SceneRootNode.Hub.Spine[0].Hub.Limb[1].Palm;CharName:RightHand;PR;matrix3 [0,1,0] [0,0,-1] [-1,0,0] [0,0,0]
+SceneRootNode.Hub.Spine[0].Hub.Limb[1].LimbBone[0].BoneSeg[0];CharName:RightArm;PR;matrix3 [0,1,0] [1,0,0] [0,0,-1] [0,0,0]
+SceneRootNode.Hub.Spine[0].Hub.Limb[1].LimbBone[1].BoneSeg[0];CharName:RightForeArm;PR;matrix3 [0,1,0] [1,0,0] [0,0,-1] [0,0,0]
+SceneRootNode.Hub.Spine[0].Hub.Limb[1].LimbBone[0].BoneSeg[0];CharName:RightArm;PR;matrix3 [0,1,0] [1,0,0] [0,0,-1] [0,0,0]
+SceneRootNode.Hub.Spine[0].Hub.Limb[1].LimbBone[1].BoneSeg[0];CharName:RightForeArm;PR;matrix3 [0,1,0] [1,0,0] [0,0,-1] [0,0,0]
+SceneRootNode.Hub.Spine[0].Hub.Limb[1].Palm;CharName:RightHand;PR;matrix3 [0,1,0] [0,0,-1] [-1,0,0] [0,0,0]
+SceneRootNode.Hub.Spine[0].Hub.Limb[1].LimbBone[0].BoneSeg[0];CharName:RightArm;PR;matrix3 [0,1,0] [1,0,0] [0,0,-1] [0,0,0]
+SceneRootNode.Hub.Spine[0].Hub.Limb[1].LimbBone[1].BoneSeg[0];CharName:RightForeArm;PR;matrix3 [0,1,0] [1,0,0] [0,0,-1] [0,0,0]
+
+SceneRootNode.Hub.Spine[0].Hub.Limb[1].Palm.Digit[0].DigitSegParams[0];CharName:RightHandThumb1;PR;matrix3 [0,1,0] [0,0,-1] [-1,0,0] [0,0,0]
+SceneRootNode.Hub.Spine[0].Hub.Limb[1].Palm.Digit[0].DigitSegParams[1];CharName:RightHandThumb2;PR;matrix3 [0,1,0] [0,0,-1] [-1,0,0] [0,0,0]
+SceneRootNode.Hub.Spine[0].Hub.Limb[1].Palm.Digit[0].DigitSegParams[2];CharName:RightHandThumb3;PR;matrix3 [0,1,0] [0,0,-1] [-1,0,0] [0,0,0]
+SceneRootNode.Hub.Spine[0].Hub.Limb[1].Palm.Digit[0].DigitSegParams[3];CharName:RightHandThumb4;PR;matrix3 [0,1,0] [0,0,-1] [-1,0,0] [0,0,0]
+SceneRootNode.Hub.Spine[0].Hub.Limb[1].Palm.Digit[1].DigitSegParams[0];CharName:RightHandIndex1;PR;matrix3 [0,1,0] [0,0,-1] [-1,0,0] [0,0,0]
+SceneRootNode.Hub.Spine[0].Hub.Limb[1].Palm.Digit[1].DigitSegParams[1];CharName:RightHandIndex2;PR;matrix3 [0,1,0] [0,0,-1] [-1,0,0] [0,0,0]
+SceneRootNode.Hub.Spine[0].Hub.Limb[1].Palm.Digit[1].DigitSegParams[2];CharName:RightHandIndex3;PR;matrix3 [0,1,0] [0,0,-1] [-1,0,0] [0,0,0]
+SceneRootNode.Hub.Spine[0].Hub.Limb[1].Palm.Digit[1].DigitSegParams[3];CharName:RightHandIndex4;PR;matrix3 [0,1,0] [0,0,-1] [-1,0,0] [0,0,0]
