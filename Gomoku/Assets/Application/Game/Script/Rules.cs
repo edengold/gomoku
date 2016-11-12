@@ -17,7 +17,7 @@ public class Rules : MonoBehaviour
     static extern void DeleteGomokuAPI(IntPtr api);
 
     [DllImport("GomokuDll", CharSet = CharSet.Unicode)]
-    static extern int GetTurn(IntPtr api);
+    static extern bool GetTurn(IntPtr api);
 
     [DllImport("GomokuDll", CharSet = CharSet.Unicode)]
     static extern bool CanIPutHere(IntPtr api, int pos);
@@ -32,7 +32,7 @@ public class Rules : MonoBehaviour
     static extern int GetNbBlackPrise(IntPtr api);
 
     [DllImport("GomokuDll", CharSet = CharSet.Unicode)]
-    static extern int GetVictoryTeam(IntPtr api);
+    static extern bool GetVictoryTeam(IntPtr api);
 
     [DllImport("GomokuDll", CharSet = CharSet.Unicode)]
     static extern bool GetVictory(IntPtr api);
@@ -53,7 +53,12 @@ public class Rules : MonoBehaviour
 
     public void GetTurn()
     {
-        Player = GetTurn(_gomokuAPI);
+        if (GetTurn(_gomokuAPI))
+            Player = 0;
+        else
+        {
+            Player = 1;
+        }
     }
     public void GetNbBlackPrise()
     {
@@ -69,7 +74,9 @@ public class Rules : MonoBehaviour
     }
     public int GetVictoryTeam()
     {
-        return GetVictoryTeam(_gomokuAPI);
+        if (GetVictoryTeam(_gomokuAPI))
+            return 0;
+        return 1;
     }
     public void GetDeletedPion()
     {
@@ -90,6 +97,10 @@ public class Rules : MonoBehaviour
         GetTurn();
         GetNbBlackPrise(_gomokuAPI);
         GetNbWhitePrise(_gomokuAPI);
+        if (GetVictory(_gomokuAPI))
+        {
+            Debug.Log("VictoryTeam =" + GetVictoryTeam(_gomokuAPI));
+        }
     }
 
     public void OnDestroy()

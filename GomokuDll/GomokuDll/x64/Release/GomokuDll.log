@@ -1,10 +1,9 @@
 ﻿  GomokuApi.cpp
-GomokuApi.cpp(50): warning C4800: 'int' : valeur forcée à la valeur booléenne 'true' ou 'false' (avertissement sur les performances)
-     Création de la bibliothèque c:\users\rusig_n\documents\visual studio 2015\Projects\GomokuDll\x64\Release\GomokuDll.lib et de l'objet c:\users\rusig_n\documents\visual studio 2015\Projects\GomokuDll\x64\Release\GomokuDll.exp
+     Création de la bibliothèque C:\Users\rusig_n\Documents\Gomoku\unity\GomokuDll\x64\Release\GomokuDll.lib et de l'objet C:\Users\rusig_n\Documents\Gomoku\unity\GomokuDll\x64\Release\GomokuDll.exp
   Génération de code en cours
-  54 of 57 functions (94.7%) were compiled, the rest were copied from previous compilation.
-    49 functions were new in current compilation
-    0 functions had inline decision re-evaluated but remain unchanged
+  0 of 442 functions ( 0.0%) were compiled, the rest were copied from previous compilation.
+    0 functions were new in current compilation
+    21 functions had inline decision re-evaluated but remain unchanged
   Fin de la génération du code
-  GomokuDll.vcxproj -> c:\users\rusig_n\documents\visual studio 2015\Projects\GomokuDll\x64\Release\GomokuDll.dll
-  GomokuDll.vcxproj -> c:\users\rusig_n\documents\visual studio 2015\Projects\GomokuDll\x64\Release\GomokuDll.pdb (Full PDB)
+  GomokuDll.vcxproj -> C:\Users\rusig_n\Documents\Gomoku\unity\GomokuDll\x64\Release\GomokuDll.dll
+  GomokuDll.vcxproj -> C:\Users\rusig_n\Documents\Gomoku\unity\GomokuDll\x64\Release\GomokuDll.pdb (Full PDB)
