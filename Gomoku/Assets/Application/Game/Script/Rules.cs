@@ -78,13 +78,19 @@ public class Rules : MonoBehaviour
             return 0;
         return 1;
     }
-    public void GetDeletedPion()
+    public int GetDeletedPion()
     {
         int tmp;
         if ((tmp = GetDeletedPion(_gomokuAPI)) != -1)
         {
-
+            return tmp;
+            if (tmp >= 0 && tmp < 20*20)
+            {
+                Debug.Log(tmp);
+                Board.DeletePion(tmp);
+            }
         }
+        return -1;
     }
     public bool CanIPutHere(int pos)
     {
@@ -99,7 +105,13 @@ public class Rules : MonoBehaviour
         GetNbWhitePrise(_gomokuAPI);
         if (GetVictory(_gomokuAPI))
         {
-            Debug.Log("VictoryTeam =" + GetVictoryTeam(_gomokuAPI));
+            if (GetVictoryTeam(_gomokuAPI))
+                Debug.Log("VictoryTeam = blanc");
+            else
+            {
+                Debug.Log("VictoryTeam = noir");
+
+            }
         }
     }
 

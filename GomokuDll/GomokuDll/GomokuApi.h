@@ -35,17 +35,21 @@ public:
 	bool GetVictory() const;
 
 	std::map<std::pair<int, int>, bool> get_board() const;
-	bool move(int x, int y, bool color);
+	//bool move(int x, int y, bool color);
 	bool get_turn() const;
 	bool check_5_align(int x, int y) const;
 	bool is_3_align(int x, int y, board::Direction dir, bool color) const;
+	int     **check_if_can_take(std::pair<int, int>);
+	int     check_pieces_taken(std::pair<int, int>, std::pair<int, int>, std::pair<int, int>, int **);
+	int     **move(int x, int y, bool color);
+	void test();
+	std::vector<int> _deletedPion;
 
 private:
 	int _nbPriseW;
 	int _nbPriseB;
 	bool _victoryTeam;
 	bool _isVictory;
-	std::vector<int> _deletedPion;
 
 	bool put_piece(std::pair<int, int>, bool);
 	bool check_if_free(std::pair<int, int>);
@@ -54,9 +58,10 @@ private:
 	bool check_line_breakable(std::list<pair>, std::map<pair, bool>, int, int) const;
 	bool check_column_breakable(pair, const std::map<pair, bool>, int, int, bool) const;
 	bool analyse_3_align(const std::string) const;
-
 	std::map<std::pair<int, int>, bool>	_board;
 	bool					_color;
+
+	int                                 _pieces_taken[2];
 };
 
 extern "C" {

@@ -57,7 +57,18 @@ public class GomokuPion : MonoBehaviour
             if (Input.GetMouseButtonDown(0))
             {
                 if (_Rules.CanIPutHere(id))
+                {
+                    int tmp;
+                    while ((tmp = _Rules.GetDeletedPion()) != -1)
+                    {
+                        if (tmp >= 0 && tmp <= 20 * 20)
+                        {
+                            Debug.Log(tmp);
+                        _Rules.Board.DeletePion(tmp);
+                        }
+                    }
                     InvokePion(_Rules.Player);
+                }
                 else
                 {
                     notHere.SetActive(true);

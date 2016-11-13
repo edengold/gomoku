@@ -42,6 +42,14 @@ public class GomokuBoardManager : MonoBehaviour {
     {
         PionList[pos].GetComponent<GomokuPion>().InvokePion(player);
     }
+    public void DeletePion(int x, int y)
+    {
+        PionList[(x * 20) + y].GetComponent<GomokuPion>().KillPion();
+    }
+    public void DeletePion(int pos)
+    {
+        PionList[pos].GetComponent<GomokuPion>().KillPion();
+    }
     // Update is called once per frame
     void Update () {
 
