@@ -35,8 +35,8 @@ public:
 	std::map<std::pair<int, int>, bool> get_board() const;
 	void special_move(int x, int y, int color);
 	bool get_turn() const;
-	void set_turn() ;
-	bool check_5_align(int x, int y) const;
+	void set_turn();
+	int     check_5_align_board() const;
 	int  **check_if_can_take(std::pair<int, int>);
 	int  check_pieces_taken(std::pair<int, int>, std::pair<int, int>, std::pair<int, int>, int **);
 	void test();
@@ -46,9 +46,12 @@ public:
 	void	set3BreakRule(bool val);
 
 private:
+
 	bool put_piece(std::pair<int, int>, bool);
 	bool check_if_free(std::pair<int, int>);
 
+	bool    check_5_align(pair, std::list<pair> &) const;
+	bool    check_if_free(std::pair<int, int>) const;
 	bool    is_double_3_align(int x, int y, bool color) const;
 	bool check_if_free_cst(std::pair<int, int>) const;
 	std::list<pair>    check_line_align(int, int, int, int) const;

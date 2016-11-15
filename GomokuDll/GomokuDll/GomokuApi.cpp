@@ -116,7 +116,7 @@ bool GomokuApi::put_piece(std::pair<int, int> pos, bool color)
     _board[pos] = color;
     return true;
 }
-
+/*
 bool GomokuApi::check_5_align(int x, int y) const
 {
 	std::list<std::list<pair>>	lines;
@@ -137,8 +137,55 @@ bool GomokuApi::check_5_align(int x, int y) const
 		}
 	}
 	return (false);
+}*/
+bool GomokuApi::check_if_free(std::pair<int, int> pos) const
+{
+	if (_board.find(pos) == _board.end())
+		return true;
+	return false;
 }
+bool GomokuApi::check_5_align(pair pos, std::list<pair> & pieces) const
+{
+	std::list<std::list<pair>>	lines;
+	bool				check = false;
 
+	if (check_if_free(pos) == false)
+	{
+		for (int rotation = 0; rotation < 4; rotation++)
+			lines.push_back(check_line_align((rotation + 2) / 3,
+			(rotation == 0) ? (1) : (2 - rotation), pos.first, pos.second));
+	}
+	for (std::list<std::list<pair>>::iterator i = lines.begin(); i != lines.end(); i++)
+	{
+		for (std::list<pair>::iterator elem = i->begin(); elem != i->end(); elem++)
+			pieces.push_back(*elem);
+		if (i->size() >= 5)
+		{
+			if (!_isBreakRule)
+				return true;
+			if (check_line_breakable(*i) == false)
+				check = true;
+		}
+	}
+	return (check);
+}
+int GomokuApi::check_5_align_board() const
+{
+	std::list<pair>	pieces;
+
+	for (std::map<pair, bool>::const_iterator it = _board.begin(); it != _board.end(); it++)
+	{
+		if (std::find(pieces.begin(), pieces.end(), it->first) == pieces.end()
+			&& check_5_align(it->first, pieces) == true)
+		{
+			std::cout << "ret" << std::endl;
+			for (std::list<pair>::const_iterator i = pieces.begin(); i != pieces.end(); i++)
+				std::cout << "ok" << std::endl;
+			return (static_cast<int>(_board.at(it->first)));
+		}
+	}
+	return -1;
+}
 std::list<pair> GomokuApi::check_line_align(int x_inc, int y_inc, int x, int y) const
 {
 	std::map<std::pair<int, int>, bool>   board = get_board();
@@ -349,7 +396,7 @@ bool GomokuApi::CanIPutHere(int pos)
 					i++;
 				}
 			}
-		if (check_5_align(x, y))
+		if (check_5_align_board() != -1)
 		{
 			_isVictory = true;
 			_victoryTeam = _color;
