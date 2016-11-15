@@ -46,15 +46,17 @@ MYGOMOKU_API bool GetVictory(GomokuApi *api)
 	return  api->GetVictory();
 }
 
-MYGOMOKU_API void Opt3Rule(GomokuApi *api)
+MYGOMOKU_API void Opt3Rule(GomokuApi *api, bool val)
 {
-	api->set3Rule(false);
+	api->set3Rule(val);
 }
 
-MYGOMOKU_API void OptBreakRule(GomokuApi *api)
+MYGOMOKU_API int OptBreakRule(GomokuApi *api, bool val)
 {
-	api->set3BreakRule(false);
+	api->set3BreakRule(val);
+	return api->check_5_align_board();
 }
+
 MYGOMOKU_API void ChangeMap(GomokuApi *api, int x, int y, int color)
 {
 	if (color == 1)
@@ -72,8 +74,8 @@ GomokuApi::GomokuApi()
 	_color = true;
 	_isVictory = false;
 	_victoryTeam = false;
-	_is3rule = true;
-	_isBreakRule = true;
+	_is3rule = false;
+	_isBreakRule = false;
 }
 
 GomokuApi::~GomokuApi()
@@ -91,11 +93,11 @@ bool GomokuApi::get_turn() const
 {
     return _color;
 }
+
 void GomokuApi::set_turn() 
 {
 	_color = !_color;
 }
-
 
 bool GomokuApi::check_if_free(std::pair<int, int> pos)
 {
@@ -116,34 +118,14 @@ bool GomokuApi::put_piece(std::pair<int, int> pos, bool color)
     _board[pos] = color;
     return true;
 }
-/*
-bool GomokuApi::check_5_align(int x, int y) const
-{
-	std::list<std::list<pair>>	lines;
 
-	if (check_if_free_cst(pair(x, y)) == true)
-		return false;
-	for (int rotation = 0; rotation < 4; rotation++)
-		lines.push_back(check_line_align((rotation + 2) / 3,
-		(rotation == 0) ? (1) : (2 - rotation), x, y));
-	for (std::list<std::list<pair>>::iterator i = lines.begin(); i != lines.end(); i++)
-	{
-		if (i->size() >= 5)
-		{
-			if (!_isBreakRule)
-				return true;
-			if (!check_line_breakable(*i))
-				return (true);
-		}
-	}
-	return (false);
-}*/
 bool GomokuApi::check_if_free(std::pair<int, int> pos) const
 {
 	if (_board.find(pos) == _board.end())
 		return true;
 	return false;
 }
+
 bool GomokuApi::check_5_align(pair pos, std::list<pair> & pieces) const
 {
 	std::list<std::list<pair>>	lines;
@@ -169,6 +151,7 @@ bool GomokuApi::check_5_align(pair pos, std::list<pair> & pieces) const
 	}
 	return (check);
 }
+
 int GomokuApi::check_5_align_board() const
 {
 	std::list<pair>	pieces;
@@ -186,6 +169,7 @@ int GomokuApi::check_5_align_board() const
 	}
 	return -1;
 }
+
 std::list<pair> GomokuApi::check_line_align(int x_inc, int y_inc, int x, int y) const
 {
 	std::map<std::pair<int, int>, bool>   board = get_board();
@@ -209,7 +193,6 @@ std::list<pair> GomokuApi::check_line_align(int x_inc, int y_inc, int x, int y) 
 	}
 	return (line);
 }
-
 
 bool GomokuApi::check_line_breakable(std::list<pair> list) const
 {
@@ -307,7 +290,7 @@ bool GomokuApi::is_3_align(int x, int y, board::Direction dir, bool color) const
 	return (false);
 }
 
-int    GomokuApi::check_pieces_taken(std::pair<int, int> one, std::pair<int, int> two, std::pair<int, int> three, int **tab)
+int  GomokuApi::check_pieces_taken(std::pair<int, int> one, std::pair<int, int> two, std::pair<int, int> three, int **tab)
 {
 	if (check_if_free(one) || check_if_free(two) || check_if_free(three))
 		return 0;
@@ -322,6 +305,7 @@ int    GomokuApi::check_pieces_taken(std::pair<int, int> one, std::pair<int, int
 	}
 	return 2;
 }
+
 int **GomokuApi::check_if_can_take(std::pair<int, int> pos)
 {
 	int                 count;
@@ -330,7 +314,11 @@ int **GomokuApi::check_if_can_take(std::pair<int, int> pos)
 	count = 0;
 	tab = new int*[20];
 	for (int i = 0; i < 20; ++i)
+	{
 		tab[i] = new int[2];
+		tab[i][0] = -1;
+		tab[i][1] = -1;
+	}
 	count += check_pieces_taken(pair(pos.first + 3, pos.second), pair(pos.first + 2, pos.second), pair(pos.first + 1, pos.second), &tab[count]);
 	count += check_pieces_taken(pair(pos.first - 3, pos.second), pair(pos.first - 2, pos.second), pair(pos.first - 1, pos.second), &tab[count]);
 	count += check_pieces_taken(pair(pos.first, pos.second + 3), pair(pos.first, pos.second + 2), pair(pos.first, pos.second + 1), &tab[count]);
@@ -349,6 +337,7 @@ int **GomokuApi::check_if_can_take(std::pair<int, int> pos)
 	tab[count][0] = -1;
 	return tab;
 }
+
 bool	GomokuApi::is_double_3_align(int x, int y, bool color) const
 {
 	if (!_is3rule)
@@ -372,11 +361,8 @@ bool GomokuApi::CanIPutHere(int pos)
 {
 	int x = static_cast<int>(pos % 20);
 	int y = static_cast<int>(pos / 20);
-	//bool -> if i can put pion here 
 	if (!is_double_3_align(x, y, _color))
 	{
-		//func to checkprise si oui ajouter au tab des pion a delete
-		//check si victoire
 		std::pair<int, int> tmp(x, y);
 		put_piece(tmp, _color);
 		int                 **tab;
@@ -441,73 +427,12 @@ void GomokuApi::special_move(int x, int y, int color)
 
 void GomokuApi::set3Rule(bool val)
 {
-	_is3rule = false;
+	_is3rule = val;
 }
 
 void GomokuApi::set3BreakRule(bool val)
 {
-	_isBreakRule = false;
+	_isBreakRule = val;
 }
 
 #pragma endregion 
-
-
-
-void    GomokuApi::test()
-{
-	int **tab;
-	put_piece(pair(0, 0), true);
-	put_piece(pair(0, 2), true);
-	put_piece(pair(1, 0), false);
-	put_piece(pair(2, 0), false);
-
-	_color = true;
-	//tab = move(3, 0, true);
-	std::cout << tab[0][0] << std::endl;
-	std::cout << tab[0][1] << std::endl;
-	std::cout << tab[1][0] << std::endl;
-	std::cout << tab[1][1] << std::endl;
-}
-/*
-int main()
-{
-	GomokuApi gomoku;
-	//gomoku.test();
-	gomoku.CanIPutHere(0);
-	gomoku.CanIPutHere(1);
-	gomoku.CanIPutHere(12);
-	gomoku.CanIPutHere(2);
-	gomoku.CanIPutHere(3);
-	gomoku.CanIPutHere(407);
-	gomoku.CanIPutHere(3);
-	gomoku.CanIPutHere(400);
-	gomoku.CanIPutHere(4);
-	std::map<std::pair<int, int>, bool>	board = gomoku.get_board();
-	for (std::map<std::pair<int, int>, bool>::iterator it = board.begin(); it != board.end(); ++it)
-	{
-		printf("x = %d y = %d =>", it->first.first, it->first.second);
-		if (it->second)
-			printf("blanc\n");
-		else
-		{
-			printf("noir\n");
-		}
-		it->second; // accede à la valeur
-	}
-	if (gomoku.check_5_align(0,0))
-	{
-		printf("c aligner");
-	}
-	for (int i = 0; i < gomoku._deletedPion.size(); i++)
-	{
-		printf("%d ", gomoku._deletedPion[i]);
-	}
-	printf("\n%d ", gomoku.GetDeletedPion());
-	printf("\n%d ", gomoku.GetDeletedPion());
-	printf("\n%d ", gomoku.GetDeletedPion());
-	while (true)
-	{
-		
-	}
-	return 0;
-}*/

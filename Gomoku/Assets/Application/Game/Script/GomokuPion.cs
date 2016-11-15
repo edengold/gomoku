@@ -65,6 +65,7 @@ public class GomokuPion : MonoBehaviour
                 {
                     if (!one)
                     {
+                        _Rules._isReversed = false;
                         Board.PionListTmp.Clear();
                         foreach (var val in Board.PionList)
                         {
@@ -79,8 +80,6 @@ public class GomokuPion : MonoBehaviour
                     int tmp;
                     while ((tmp = _Rules.GetDeletedPion()) != -1)
                     {
-                        if (tmp >= 0 && tmp <= 20 * 20)
-                        {
                             Debug.Log(tmp);
                            _Rules.Board.DeletePion(tmp);
                             if (_Rules.Player == 0)
@@ -89,7 +88,6 @@ public class GomokuPion : MonoBehaviour
                             {
                                 _Rules.NbBlackPrise++;
                             }
-                        }
                     }
                     InvokePion(_Rules.Player);
                 }

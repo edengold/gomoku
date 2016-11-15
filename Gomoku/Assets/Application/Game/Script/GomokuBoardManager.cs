@@ -55,17 +55,20 @@ public class GomokuBoardManager : MonoBehaviour {
     public void ReturnToTmp()
     {
         int i = 0;
-        foreach (GameObject val in PionList)
+        if (PionListTmp.Count > 0)
         {
-            if (PionListTmp[i] >= 0 && !val.GetComponent<GomokuPion>()._isOnBoard)
+            foreach (GameObject val in PionList)
             {
-                val.GetComponent<GomokuPion>().InvokePion(PionListTmp[i]);
+                if (PionListTmp[i] >= 0 && !val.GetComponent<GomokuPion>()._isOnBoard)
+                {
+                    val.GetComponent<GomokuPion>().InvokePion(PionListTmp[i]);
+                }
+                else if (PionListTmp[i] == -1 && val.GetComponent<GomokuPion>()._isOnBoard)
+                {
+                    val.GetComponent<GomokuPion>().KillPion();
+                }
+                i++;
             }
-            else if (PionListTmp[i] == -1 && val.GetComponent<GomokuPion>()._isOnBoard)
-            {
-                val.GetComponent<GomokuPion>().KillPion();
-            }
-            i++;
         }
     }
     // Update is called once per frame

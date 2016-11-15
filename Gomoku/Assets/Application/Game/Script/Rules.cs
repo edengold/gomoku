@@ -3,6 +3,7 @@ using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
 using System.Runtime.InteropServices;
+using UnityEngine.UI;
 
 public class Rules : MonoBehaviour
 {
@@ -35,10 +36,10 @@ public class Rules : MonoBehaviour
     static extern bool GetVictory(IntPtr api);
 
     [DllImport("GomokuDll", CharSet = CharSet.Unicode)]
-    static extern bool Opt3Rule(IntPtr api);
+    static extern bool Opt3Rule(IntPtr api, bool col);
 
     [DllImport("GomokuDll", CharSet = CharSet.Unicode)]
-    static extern bool OptBreakRule(IntPtr api);
+    static extern int OptBreakRule(IntPtr api, bool col);
 
     [DllImport("GomokuDll", CharSet = CharSet.Unicode)]
     static extern void ChangeMap(IntPtr api, int x, int y, int color);
@@ -52,19 +53,50 @@ public class Rules : MonoBehaviour
     public int NbTurs = 0;
     public bool _isVictory = false;
     public GameObject VicScreen;
+    public bool _isReversed = false;
+    public Text VictoriTest;
 
-    void Start()
+    void Awake()
     {
         _gomokuAPI = CreateGomokuAPI();
-        if (PlayerPrefs.GetInt("breakrule") == 0)
-            OptBreakRule(_gomokuAPI);
-        if (PlayerPrefs.GetInt("treerule") == 0)
-            Opt3Rule(_gomokuAPI);
 
+    }
+    void Start()
+    {
+        if (PlayerPrefs.GetInt("breakrule") == 0)
+            OptBreakRule(_gomokuAPI, false);
+        else
+            OptBreakRule(_gomokuAPI, true);
+        if (PlayerPrefs.GetInt("treerule") == 0)
+            Opt3Rule(_gomokuAPI, false);
+        else
+            Opt3Rule(_gomokuAPI, true);
     }
 
     #region FuncFromDll
 
+    public void chBreak(bool val)
+    {
+        int tmp;
+        if ((tmp = OptBreakRule(_gomokuAPI, val)) != -1)
+        {
+            if (tmp == 0)
+            {
+                _isVictory = true;
+                VictoriTest.text = "WHITE WIN";
+            }
+            else
+            {
+                VictoriTest.text = "BLACK WIN";
+                VictoriTest.color = Color.black;
+                _isVictory = true;
+            }
+        }
+    }
+    public void ch3(bool val)
+    {
+        Opt3Rule(_gomokuAPI, val);
+    }
     public void GetTurn()
     {
         if (GetTurn(_gomokuAPI))
@@ -106,16 +138,20 @@ public class Rules : MonoBehaviour
 
     public void Reverse()
     {
-         NbTurs--;
-         Board.ReturnToTmp();
-        foreach (var val in Board.PionList)
+        if (NbTurs > 0 && !_isReversed)
         {
-            GomokuPion pion = val.GetComponent<GomokuPion>();
-            int x = (int) (pion.id%20);
-            int y = (int) (pion.id/20);
-            ChangeMap(_gomokuAPI, x, y, pion._player);
+            NbTurs--;
+            _isReversed = true;
+            Board.ReturnToTmp();
+            foreach (var val in Board.PionList)
+            {
+                GomokuPion pion = val.GetComponent<GomokuPion>();
+                int x = (int) (pion.id%20);
+                int y = (int) (pion.id/20);
+                ChangeMap(_gomokuAPI, x, y, pion._player);
+            }
+            SetTurn(_gomokuAPI);
         }
-         SetTurn(_gomokuAPI);
     }
     #endregion
 
@@ -126,14 +162,24 @@ public class Rules : MonoBehaviour
         {
             _isVictory = true;
             if (GetVictoryTeam(_gomokuAPI))
-                Debug.Log("VictoryTeam = blanc");
+                VictoriTest.text = "WHITE WIN";
             else
             {
-                Debug.Log("VictoryTeam = noir");
+                VictoriTest.text = "BLACK WIN";
+                VictoriTest.color = Color.black;
             }
         }
         if (NbBWhitePrise >= 10 || NbBlackPrise >= 10)
-            _isVictory= true;
+        {
+            if (NbBWhitePrise >= 10)
+                VictoriTest.text = "WHITE WIN";
+            else
+            {
+                VictoriTest.text = "BLACK WIN";
+                VictoriTest.color = Color.black;
+            }
+            _isVictory = true;
+        }
         if (_isVictory && !VicScreen.activeSelf)
         {
             VicScreen.SetActive(true);

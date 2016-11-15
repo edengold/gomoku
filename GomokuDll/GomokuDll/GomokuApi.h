@@ -39,7 +39,6 @@ public:
 	int     check_5_align_board() const;
 	int  **check_if_can_take(std::pair<int, int>);
 	int  check_pieces_taken(std::pair<int, int>, std::pair<int, int>, std::pair<int, int>, int **);
-	void test();
 	bool    is_3_align(int x, int y, board::Direction dir, bool color) const;
 
 	void	set3Rule(bool val);
@@ -78,8 +77,8 @@ extern "C" {
 	MYGOMOKU_API int GetDeletedPion(GomokuApi *api);
 	MYGOMOKU_API bool GetVictoryTeam(GomokuApi *api);
 	MYGOMOKU_API bool GetVictory(GomokuApi *api);
-	MYGOMOKU_API void Opt3Rule(GomokuApi *api);
-	MYGOMOKU_API void OptBreakRule(GomokuApi *api);
+	MYGOMOKU_API void Opt3Rule(GomokuApi *api, bool val);
+	MYGOMOKU_API int OptBreakRule(GomokuApi *api, bool val);
 	MYGOMOKU_API void ChangeMap(GomokuApi *api, int x, int y, int color);
 }
 
