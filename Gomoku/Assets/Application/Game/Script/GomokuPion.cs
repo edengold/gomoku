@@ -1,17 +1,19 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 
 public class GomokuPion : MonoBehaviour
 {
 
-    private bool _isOnBoard = false;
-    private int _player = 1;
+    public bool _isOnBoard = false;
+    public int _player = -1;
     public int id;
     public Rules _Rules;
+    public GomokuBoardManager Board;
     public GameObject notHere;
     void Start()
     {
-
+        _player = -1;
     }
 
     // Update is called once per frame
@@ -27,6 +29,7 @@ public class GomokuPion : MonoBehaviour
     {
         if (!_isOnBoard)
         {
+            _player = player;
             //Debug.Log("x = " + (int)(id % 20) + " y = " + (int)(id / 20));
             GetComponent<MeshRenderer>().enabled = true;
             if (player == 1)
@@ -40,6 +43,7 @@ public class GomokuPion : MonoBehaviour
     {
         if (_isOnBoard)
         {
+            _player = -1;
             GetComponent<MeshRenderer>().enabled = false;
             GetComponent<Renderer>().material.SetColor("_Color", Color.white);
             _isOnBoard = false;
@@ -47,8 +51,9 @@ public class GomokuPion : MonoBehaviour
     }
     void OnMouseOver()
     {
-        if (!_isOnBoard)
+        if (!_isOnBoard && !_Rules._isVictory)
         {
+            bool one = false;
             GetComponent<MeshRenderer>().enabled = true;
             if (_Rules.Player == 0)
                 GetComponent<Renderer>().material.SetColor("_Color", Color.white);
@@ -58,13 +63,32 @@ public class GomokuPion : MonoBehaviour
             {
                 if (_Rules.CanIPutHere(id))
                 {
+                    if (!one)
+                    {
+                        Board.PionListTmp.Clear();
+                        foreach (var val in Board.PionList)
+                        {
+                            if (val.GetComponent<GomokuPion>()._isOnBoard)
+                                Board.PionListTmp.Add(val.GetComponent<GomokuPion>()._player);
+                            else
+                                Board.PionListTmp.Add(-1);
+                        }
+                        _Rules.NbTurs++;
+                        one = true;
+                    }
                     int tmp;
                     while ((tmp = _Rules.GetDeletedPion()) != -1)
                     {
                         if (tmp >= 0 && tmp <= 20 * 20)
                         {
                             Debug.Log(tmp);
-                        _Rules.Board.DeletePion(tmp);
+                           _Rules.Board.DeletePion(tmp);
+                            if (_Rules.Player == 0)
+                                _Rules.NbBWhitePrise++;
+                            else
+                            {
+                                _Rules.NbBlackPrise++;
+                            }
                         }
                     }
                     InvokePion(_Rules.Player);

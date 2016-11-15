@@ -12,12 +12,12 @@ typedef std::pair<int, int> pair;
 
 namespace board
 {
-	enum class	Direction : uint16_t
+	enum class    Direction : uint16_t
 	{
 		N = 0,
 		NE = 1,
 		E = 2,
-		S = 3
+		SE = 3
 	};
 }
 
@@ -29,39 +29,40 @@ public:
 
 	bool CanIPutHere(int pos);
 	int GetDeletedPion();
-	int GetNbWhitePrise() const;
-	int GetNbBlackPrise() const;
 	bool GetVictoryTeam() const;
 	bool GetVictory() const;
 
 	std::map<std::pair<int, int>, bool> get_board() const;
-	//bool move(int x, int y, bool color);
+	void special_move(int x, int y, int color);
 	bool get_turn() const;
+	void set_turn() ;
 	bool check_5_align(int x, int y) const;
-	bool is_3_align(int x, int y, board::Direction dir, bool color) const;
-	int     **check_if_can_take(std::pair<int, int>);
-	int     check_pieces_taken(std::pair<int, int>, std::pair<int, int>, std::pair<int, int>, int **);
-	int     **move(int x, int y, bool color);
+	int  **check_if_can_take(std::pair<int, int>);
+	int  check_pieces_taken(std::pair<int, int>, std::pair<int, int>, std::pair<int, int>, int **);
 	void test();
-	std::vector<int> _deletedPion;
+	bool    is_3_align(int x, int y, board::Direction dir, bool color) const;
+
+	void	set3Rule(bool val);
+	void	set3BreakRule(bool val);
 
 private:
-	int _nbPriseW;
-	int _nbPriseB;
-	bool _victoryTeam;
-	bool _isVictory;
-
 	bool put_piece(std::pair<int, int>, bool);
 	bool check_if_free(std::pair<int, int>);
-	bool check_if_free_cst(std::pair<int, int>, std::map<pair, bool>) const;
-	bool check_line_align(int, int, int, int) const;
-	bool check_line_breakable(std::list<pair>, std::map<pair, bool>, int, int) const;
-	bool check_column_breakable(pair, const std::map<pair, bool>, int, int, bool) const;
-	bool analyse_3_align(const std::string) const;
-	std::map<std::pair<int, int>, bool>	_board;
-	bool					_color;
 
-	int                                 _pieces_taken[2];
+	bool    is_double_3_align(int x, int y, bool color) const;
+	bool check_if_free_cst(std::pair<int, int>) const;
+	std::list<pair>    check_line_align(int, int, int, int) const;
+	std::list<pair>    check_if_vulnerable(pair) const;
+	bool check_line_breakable(std::list<pair>) const;
+	bool    check_if_out(pair) const;
+
+	bool								_victoryTeam;
+	bool								_isVictory;
+	std::map<std::pair<int, int>, bool>	_board;
+	bool								_color;
+	std::vector<int>					_deletedPion;
+	bool								_is3rule;
+	bool								_isBreakRule;
 };
 
 extern "C" {
@@ -69,11 +70,13 @@ extern "C" {
 	MYGOMOKU_API GomokuApi* CreateGomokuAPI();
 	MYGOMOKU_API void DeleteGomokuAPI(GomokuApi *api);
 	MYGOMOKU_API bool GetTurn(GomokuApi *api);
+	MYGOMOKU_API void SetTurn(GomokuApi *api);
 	MYGOMOKU_API bool CanIPutHere(GomokuApi *api, int pos);
 	MYGOMOKU_API int GetDeletedPion(GomokuApi *api);
-	MYGOMOKU_API int GetNbWhitePrise(GomokuApi *api);
-	MYGOMOKU_API int GetNbBlackPrise(GomokuApi *api);
 	MYGOMOKU_API bool GetVictoryTeam(GomokuApi *api);
 	MYGOMOKU_API bool GetVictory(GomokuApi *api);
+	MYGOMOKU_API void Opt3Rule(GomokuApi *api);
+	MYGOMOKU_API void OptBreakRule(GomokuApi *api);
+	MYGOMOKU_API void ChangeMap(GomokuApi *api, int x, int y, int color);
 }
 

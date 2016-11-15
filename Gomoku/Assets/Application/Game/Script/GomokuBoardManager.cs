@@ -9,6 +9,7 @@ public class GomokuBoardManager : MonoBehaviour {
     [SerializeField]
     private GameObject parent;
     public List<GameObject> PionList = new List<GameObject>();
+    public List<int> PionListTmp = new List<int>();
     // Use this for initialization
     void Start () {
         CreateBoard();
@@ -49,6 +50,23 @@ public class GomokuBoardManager : MonoBehaviour {
     public void DeletePion(int pos)
     {
         PionList[pos].GetComponent<GomokuPion>().KillPion();
+    }
+
+    public void ReturnToTmp()
+    {
+        int i = 0;
+        foreach (GameObject val in PionList)
+        {
+            if (PionListTmp[i] >= 0 && !val.GetComponent<GomokuPion>()._isOnBoard)
+            {
+                val.GetComponent<GomokuPion>().InvokePion(PionListTmp[i]);
+            }
+            else if (PionListTmp[i] == -1 && val.GetComponent<GomokuPion>()._isOnBoard)
+            {
+                val.GetComponent<GomokuPion>().KillPion();
+            }
+            i++;
+        }
     }
     // Update is called once per frame
     void Update () {

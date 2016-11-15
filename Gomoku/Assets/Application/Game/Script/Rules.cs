@@ -20,22 +20,28 @@ public class Rules : MonoBehaviour
     static extern bool GetTurn(IntPtr api);
 
     [DllImport("GomokuDll", CharSet = CharSet.Unicode)]
+    static extern bool SetTurn(IntPtr api);
+
+    [DllImport("GomokuDll", CharSet = CharSet.Unicode)]
     static extern bool CanIPutHere(IntPtr api, int pos);
 
     [DllImport("GomokuDll", CharSet = CharSet.Unicode)]
     static extern int GetDeletedPion(IntPtr api);
 
     [DllImport("GomokuDll", CharSet = CharSet.Unicode)]
-    static extern int GetNbWhitePrise(IntPtr api);
-
-    [DllImport("GomokuDll", CharSet = CharSet.Unicode)]
-    static extern int GetNbBlackPrise(IntPtr api);
-
-    [DllImport("GomokuDll", CharSet = CharSet.Unicode)]
     static extern bool GetVictoryTeam(IntPtr api);
 
     [DllImport("GomokuDll", CharSet = CharSet.Unicode)]
     static extern bool GetVictory(IntPtr api);
+
+    [DllImport("GomokuDll", CharSet = CharSet.Unicode)]
+    static extern bool Opt3Rule(IntPtr api);
+
+    [DllImport("GomokuDll", CharSet = CharSet.Unicode)]
+    static extern bool OptBreakRule(IntPtr api);
+
+    [DllImport("GomokuDll", CharSet = CharSet.Unicode)]
+    static extern void ChangeMap(IntPtr api, int x, int y, int color);
     #endregion
 
     private IntPtr _gomokuAPI;
@@ -43,10 +49,18 @@ public class Rules : MonoBehaviour
     public GomokuBoardManager Board;
     public int NbBlackPrise;
     public int NbBWhitePrise;
+    public int NbTurs = 0;
+    public bool _isVictory = false;
+    public GameObject VicScreen;
 
     void Start()
     {
         _gomokuAPI = CreateGomokuAPI();
+        if (PlayerPrefs.GetInt("breakrule") == 0)
+            OptBreakRule(_gomokuAPI);
+        if (PlayerPrefs.GetInt("treerule") == 0)
+            Opt3Rule(_gomokuAPI);
+
     }
 
     #region FuncFromDll
@@ -60,14 +74,7 @@ public class Rules : MonoBehaviour
             Player = 1;
         }
     }
-    public void GetNbBlackPrise()
-    {
-        NbBlackPrise = GetNbBlackPrise(_gomokuAPI);
-    }
-    public void GetNbWhitePrise()
-    {
-        NbBWhitePrise = GetNbWhitePrise(_gomokuAPI);
-    }
+
     public bool GetVictory()
     {
         return GetVictory(_gomokuAPI);
@@ -96,23 +103,42 @@ public class Rules : MonoBehaviour
     {
         return CanIPutHere(_gomokuAPI, pos);
     }
+
+    public void Reverse()
+    {
+         NbTurs--;
+         Board.ReturnToTmp();
+        foreach (var val in Board.PionList)
+        {
+            GomokuPion pion = val.GetComponent<GomokuPion>();
+            int x = (int) (pion.id%20);
+            int y = (int) (pion.id/20);
+            ChangeMap(_gomokuAPI, x, y, pion._player);
+        }
+         SetTurn(_gomokuAPI);
+    }
     #endregion
 
     void Update()
     {
         GetTurn();
-        GetNbBlackPrise(_gomokuAPI);
-        GetNbWhitePrise(_gomokuAPI);
         if (GetVictory(_gomokuAPI))
         {
+            _isVictory = true;
             if (GetVictoryTeam(_gomokuAPI))
                 Debug.Log("VictoryTeam = blanc");
             else
             {
                 Debug.Log("VictoryTeam = noir");
-
             }
         }
+        if (NbBWhitePrise >= 10 || NbBlackPrise >= 10)
+            _isVictory= true;
+        if (_isVictory && !VicScreen.activeSelf)
+        {
+            VicScreen.SetActive(true);
+        }
+
     }
 
     public void OnDestroy()
