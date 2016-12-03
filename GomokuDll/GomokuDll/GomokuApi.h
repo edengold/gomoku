@@ -39,7 +39,7 @@ public:
 	int     check_5_align_board() const;
 	int  **check_if_can_take(std::pair<int, int>);
 	int  check_pieces_taken(std::pair<int, int>, std::pair<int, int>, std::pair<int, int>, int **);
-	bool    is_3_align(int x, int y, board::Direction dir, bool color) const;
+
 
 	void	set3Rule(bool val);
 	void	set3BreakRule(bool val);
@@ -48,7 +48,7 @@ private:
 
 	bool put_piece(std::pair<int, int>, bool);
 	bool check_if_free(std::pair<int, int>);
-
+	pair    is_3_align(int x, int y, pair inc, bool color) const;
 	bool    check_5_align(pair, std::list<pair> &) const;
 	bool    check_if_free(std::pair<int, int>) const;
 	bool    is_double_3_align(int x, int y, bool color) const;

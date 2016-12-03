@@ -255,13 +255,12 @@ bool GomokuApi::check_if_out(pair coor) const
 	return (false);
 }
 
-bool GomokuApi::is_3_align(int x, int y, board::Direction dir, bool color) const
+pair GomokuApi::is_3_align(int x, int y, pair inc, bool color) const
 {
-	pair                  inc = pair((static_cast<int>(dir) + 2) / 3,
-		(static_cast<int>(dir) == 0) ? (1) :
-		(2 - static_cast<int>(dir)));
 	std::string           line;
 	std::map<pair, bool>  board = get_board();
+	size_t	        ret = std::string::npos;
+	size_t		tmp;
 
 	x = x - 5 * inc.first;
 	y = y - 5 * inc.second;
@@ -275,19 +274,24 @@ bool GomokuApi::is_3_align(int x, int y, board::Direction dir, bool color) const
 		{
 			if (check_if_out(pair(x, y)) == true)
 				line.append("v");
-			else if (check_if_free_cst(pair(x, y)) == true)
+			else if (check_if_free(pair(x, y)) == true)
 				line.append("f");
 			else
 				line.append((_board.at(pair(x, y)) == color) ? ("s") : ("o"));
 		}
 	}
-	if (line.find("fssCff") != std::string::npos || line.find("ffCssf") != std::string::npos
-		|| line.find("fsCsff") != std::string::npos || line.find("ffsCsf") != std::string::npos
-		|| line.find("fsfsCf") != std::string::npos || line.find("fCsfsf") != std::string::npos
-		|| line.find("fsfCsf") != std::string::npos || line.find("fsCfsf") != std::string::npos
-		|| line.find("fssfCf") != std::string::npos || line.find("fCfssf") != std::string::npos)
-		return (true);
-	return (false);
+	if ((ret = ((tmp = line.find("fssCff")) != std::string::npos) ? (tmp) : (ret)) != std::string::npos
+		|| (ret = ((tmp = line.find("ffCssf")) != std::string::npos) ? (tmp) : (ret)) != std::string::npos
+		|| (ret = ((tmp = line.find("fsCsff")) != std::string::npos) ? (tmp) : (ret)) != std::string::npos
+		|| (ret = ((tmp = line.find("ffsCsf")) != std::string::npos) ? (tmp) : (ret)) != std::string::npos
+		|| (ret = ((tmp = line.find("fsfsCf")) != std::string::npos) ? (tmp) : (ret)) != std::string::npos
+		|| (ret = ((tmp = line.find("fCsfsf")) != std::string::npos) ? (tmp) : (ret)) != std::string::npos
+		|| (ret = ((tmp = line.find("fsfCsf")) != std::string::npos) ? (tmp) : (ret)) != std::string::npos
+		|| (ret = ((tmp = line.find("fsCfsf")) != std::string::npos) ? (tmp) : (ret)) != std::string::npos
+		|| (ret = ((tmp = line.find("fssfCf")) != std::string::npos) ? (tmp) : (ret)) != std::string::npos
+		|| (ret = ((tmp = line.find("fCfssf")) != std::string::npos) ? (tmp) : (ret)) != std::string::npos)
+		return (pair(x + (ret - 8) * inc.first, y + (ret - 8) * inc.second));
+	return (pair(-1, -1));
 }
 
 int  GomokuApi::check_pieces_taken(std::pair<int, int> one, std::pair<int, int> two, std::pair<int, int> three, int **tab)
@@ -302,8 +306,9 @@ int  GomokuApi::check_pieces_taken(std::pair<int, int> one, std::pair<int, int> 
 		tab[1][0] = three.first;
 		tab[1][1] = three.second;
 		_board.erase(_board.find(three));
+		return 2;
 	}
-	return 2;
+	return 0;
 }
 
 int **GomokuApi::check_if_can_take(std::pair<int, int> pos)
@@ -342,15 +347,34 @@ bool	GomokuApi::is_double_3_align(int x, int y, bool color) const
 {
 	if (!_is3rule)
 		return false;
-	int	cpt = 0;
+	pair	inc;
+	pair	inc_2;
+	pair	start;
+	pair	cur;
 
 	for (int dir = 0; dir < 4; dir++)
 	{
-		if (is_3_align(x, y, static_cast<board::Direction>(dir), color) == true)
-			cpt++;
+		inc = pair((static_cast<int>(dir) + 2) / 3,
+			(static_cast<int>(dir) == 0) ? (1) : (2 - static_cast<int>(dir)));
+		if ((start = is_3_align(x, y, inc, color)) != pair(-1, -1))
+		{
+			for (int i = 0; i < 5; i++)
+			{
+				cur = pair(start.first + inc.first * i, start.second + inc.second * i);
+				if ((check_if_free(cur) == false && _board.at(cur) == color) || (cur.first == x && cur.second == y))
+				{
+					for (int dir_2 = (dir + 1) % 4; dir_2 % 4 != dir; dir_2 = (dir_2 + 1) % 4)
+					{
+						inc_2 = pair((static_cast<int>(dir_2) + 2) / 3,
+							(static_cast<int>(dir_2) == 0) ?
+							(1) : (2 - static_cast<int>(dir_2)));
+						if (is_3_align(cur.first, cur.second, inc_2, color) != pair(-1, -1))
+							return (true);
+					}
+				}
+			}
+		}
 	}
-	if (cpt >= 2)
-		return (true);
 	return (false);
 }
 #pragma endregion 

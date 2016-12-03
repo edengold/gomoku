@@ -78,17 +78,26 @@ public class GomokuPion : MonoBehaviour
                         one = true;
                     }
                     int tmp;
+                    int b = 0;
+                    int w = 0;
                     while ((tmp = _Rules.GetDeletedPion()) != -1)
                     {
                             Debug.Log(tmp);
                            _Rules.Board.DeletePion(tmp);
-                            if (_Rules.Player == 0)
-                                _Rules.NbBWhitePrise++;
+                        if (_Rules.Player == 0)
+                        {
+                            w++;
+                            _Rules.NbBWhitePrise++;
+                        }
                             else
-                            {
+                        {
+                            b++;
                                 _Rules.NbBlackPrise++;
                             }
                     }
+                    _Rules.NbBWhitePriseTMp = _Rules.NbBWhitePrise - w;
+                    _Rules.NbBlackPriseTmp = _Rules.NbBlackPrise - b;
+
                     InvokePion(_Rules.Player);
                 }
                 else

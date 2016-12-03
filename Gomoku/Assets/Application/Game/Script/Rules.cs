@@ -50,6 +50,8 @@ public class Rules : MonoBehaviour
     public GomokuBoardManager Board;
     public int NbBlackPrise;
     public int NbBWhitePrise;
+    public int NbBlackPriseTmp;
+    public int NbBWhitePriseTMp;
     public int NbTurs = 0;
     public bool _isVictory = false;
     public GameObject VicScreen;
@@ -151,7 +153,10 @@ public class Rules : MonoBehaviour
                 ChangeMap(_gomokuAPI, x, y, pion._player);
             }
             SetTurn(_gomokuAPI);
+            NbBWhitePrise = NbBWhitePriseTMp;
+            NbBlackPrise = NbBlackPriseTmp;
         }
+
     }
     #endregion
 
