@@ -43,10 +43,14 @@ public class Rules : MonoBehaviour
 
     [DllImport("GomokuDll", CharSet = CharSet.Unicode)]
     static extern void ChangeMap(IntPtr api, int x, int y, int color);
+
+    [DllImport("GomokuDll", CharSet = CharSet.Unicode)]
+    static extern int GetError(IntPtr api);
     #endregion
 
     private IntPtr _gomokuAPI;
     public int Player;
+    public bool ia = true;
     public GomokuBoardManager Board;
     public int NbBlackPrise;
     public int NbBWhitePrise;
@@ -60,6 +64,9 @@ public class Rules : MonoBehaviour
 
     void Awake()
     {
+        ia = true;
+        if (PlayerPrefs.GetInt("IA") == 1)
+            ia = true;
         _gomokuAPI = CreateGomokuAPI();
 
     }
@@ -163,6 +170,7 @@ public class Rules : MonoBehaviour
     void Update()
     {
         GetTurn();
+        Debug.Log("ICI LERROR => " + GetError(_gomokuAPI));
         if (GetVictory(_gomokuAPI))
         {
             _isVictory = true;

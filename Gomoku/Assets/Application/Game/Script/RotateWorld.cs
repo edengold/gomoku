@@ -25,7 +25,7 @@ public class RotateWorld : MonoBehaviour {
                 if (timer < -timeToRotate)
                     timer = timeToRotate;
             }
-            timer -= Time.deltaTime;
+            timer -= Time.deltaTime;    
         }
         else
             transform.RotateAround(world.transform.localPosition, Vector3.up, Time.deltaTime *speed);

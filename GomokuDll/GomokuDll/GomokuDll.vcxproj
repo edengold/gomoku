@@ -119,9 +119,11 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="GomokuApi.h" />
+    <ClInclude Include="MapGomoku.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="GomokuApi.cpp" />
+    <ClCompile Include="MapGomoku.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

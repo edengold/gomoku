@@ -11,6 +11,7 @@ public class GomokuPion : MonoBehaviour
     public Rules _Rules;
     public GomokuBoardManager Board;
     public GameObject notHere;
+    public GameObject notTurn;
     void Start()
     {
         _player = -1;
@@ -61,6 +62,11 @@ public class GomokuPion : MonoBehaviour
                 GetComponent<Renderer>().material.SetColor("_Color", Color.black);
             if (Input.GetMouseButtonDown(0))
             {
+         /*       if (_Rules.ia && _Rules.Player != 0)
+                {
+                    notTurn.SetActive(true);
+                    return;
+                }*/
                 if (_Rules.CanIPutHere(id))
                 {
                     if (!one)

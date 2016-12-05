@@ -18,9 +18,15 @@
     <ClInclude Include="GomokuApi.h">
       <Filter>Fichiers d%27en-tête</Filter>
     </ClInclude>
+    <ClInclude Include="MapGomoku.h">
+      <Filter>Fichiers d%27en-tête</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="GomokuApi.cpp">
+      <Filter>Fichiers sources</Filter>
+    </ClCompile>
+    <ClCompile Include="MapGomoku.cpp">
       <Filter>Fichiers sources</Filter>
     </ClCompile>
   </ItemGroup>
