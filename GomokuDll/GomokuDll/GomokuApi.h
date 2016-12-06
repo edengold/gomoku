@@ -5,7 +5,7 @@
 #include <list>
 #include <vector>
 #include "MapGomoku.h"
-
+#include <fstream>
 
 #define MYGOMOKU_API __declspec(dllexport)
 # define MY_ABS(nb) ((nb<0)?(nb):(-nb))
@@ -29,6 +29,7 @@ class GomokuApi
 public:
 	GomokuApi();
 	~GomokuApi();
+	std::ofstream fichier;
 
 	Map_gomoku get_board() const;
 	int     **check_if_can_take(int x, int y);

@@ -19,9 +19,9 @@ public class GomokuBoardManager : MonoBehaviour {
     public void CreateBoard()
     {
         int id = 0;
-        for (float i = 0.5f; i >= -0.5f; i -= 0.0525f)
+        for (float i = 0.5f; i >= -0.5f; i -= 0.0555f)
         {
-            for (float j = -0.5f; j <= 0.5f; j += 0.0525f)
+            for (float j = -0.5f; j <= 0.5f; j += 0.0555f)
             {
                 GameObject tmp;
                 tmp = (GameObject)GameObject.Instantiate(pionPrefab, new Vector3(0, 0, 0), Quaternion.Euler(0,0,0));
@@ -37,7 +37,7 @@ public class GomokuBoardManager : MonoBehaviour {
 
     public void CreatePion(int x, int y,int player)
     {
-        PionList[(x * 20) + y].GetComponent<GomokuPion>().InvokePion(player);
+        PionList[(x * 19) + y].GetComponent<GomokuPion>().InvokePion(player);
     }
     public void CreatePion(int pos, int player)
     {
@@ -45,7 +45,7 @@ public class GomokuBoardManager : MonoBehaviour {
     }
     public void DeletePion(int x, int y)
     {
-        PionList[(x * 20) + y].GetComponent<GomokuPion>().KillPion();
+        PionList[(x * 19) + y].GetComponent<GomokuPion>().KillPion();
     }
     public void DeletePion(int pos)
     {

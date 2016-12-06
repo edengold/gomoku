@@ -3,6 +3,16 @@
 Map_gomoku::Map_gomoku()
 {
 	_map = new uint64_t[MAP_H];
+
+	for (int x = 0; x < MAP_H; x++)
+	{
+		//_map[x] = 0;
+		for (int y = 0; y < MAP_H; y++)
+			setPiece(x, y, EMPTY);
+	}
+	fichierMap.open("testMap.txt", std::ios::out | std::ios::trunc);
+	fichierMap << "LOG START\n";
+	printMap();
 }
 
 Map_gomoku::~Map_gomoku()
@@ -17,30 +27,40 @@ int     Map_gomoku::getPiece(int x, int y) const
 
 void     Map_gomoku::setPiece(int x, int y, int type)
 {
-	_map[y] = _map[y] | (type << (x * 2));
+	uint64_t mask = 0;
+	uint64_t newline = 0;
+	uint64_t v = 3;
+	uint64_t t = type;
+	mask |= (v << (x * 2));
+	newline = (t << (x * 2));
+	_map[y] = (_map[y] & ~mask) | (newline & mask);
 }
 
-void    Map_gomoku::printMap() const
+void    Map_gomoku::printMap() 
 {
+	fichierMap << "\n";
 	for (int y = 0; y < MAP_H; y++)
 	{
 		for (int x = 0; x < MAP_H; x++)
 		{
 			if (getPiece(x, y) == WHITE)
-				std::cout << "■";
+				fichierMap << "W";
 			else if (getPiece(x, y) == BLACK)
-				std::cout << "□";
+				fichierMap << "B";
 			else
-				std::cout << "┼";
+				fichierMap << " ";
 			if (x < (MAP_H - 1))
-				std::cout << "─";
+				fichierMap << "*";
 		}
-		std::cout << std::endl;
+		fichierMap << std::endl;
 	}
+
 }
 
 bool    Map_gomoku::isEmpty(int x, int y) const
 {
+	if (x >= MAP_H || x < 0 || y >= MAP_H || y < 0)
+		return false;
 	if (getPiece(x, y) == EMPTY)
 		return true;
 	return false;
@@ -50,4 +70,3 @@ uint64_t    *Map_gomoku::getMap() const
 {
 	return (_map);
 }
-
