@@ -29,15 +29,17 @@ class GomokuApi
 public:
 	GomokuApi();
 	~GomokuApi();
+	GomokuApi	&operator=(const GomokuApi &copy) { return *this; }
 	std::ofstream fichier;
 
 	Map_gomoku get_board() const;
+	void  setMap(uint64_t *);
 	int     **check_if_can_take(int x, int y);
 	int     get_turn() const;
 	void    change_turn();
 	int     put_piece(int, int, int);
 	void    test();
-	int     check_5_align_board() ;
+	int     check_5_align_board()const;
 	bool    is_double_3_align(int x, int y, int color) const;
 
 	bool CanIPutHere(int pos);

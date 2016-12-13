@@ -15,9 +15,15 @@ Map_gomoku::Map_gomoku()
 	printMap();
 }
 
+Map_gomoku::Map_gomoku(const Map_gomoku &copy)
+{
+	_map = new uint64_t[MAP_H];
+	memcpy(_map, copy._map, MAP_H * sizeof(uint64_t));
+}
+
 Map_gomoku::~Map_gomoku()
 {
-	delete _map;
+	//delete _map;
 }
 
 int     Map_gomoku::getPiece(int x, int y) const
@@ -25,15 +31,17 @@ int     Map_gomoku::getPiece(int x, int y) const
 	return ((_map[y] >> (x * 2)) & 3);
 }
 
-void     Map_gomoku::setPiece(int x, int y, int type)
+int     Map_gomoku::setPiece(int x, int y, int type)
 {
-	uint64_t mask = 0;
+	/*uint64_t mask = 0;
 	uint64_t newline = 0;
 	uint64_t v = 3;
 	uint64_t t = type;
 	mask |= (v << (x * 2));
 	newline = (t << (x * 2));
-	_map[y] = (_map[y] & ~mask) | (newline & mask);
+	_map[y] = (_map[y] & ~mask) | (newline & mask);*/
+	PUT_PIECE(_map, x, y, type);
+	return 0;
 }
 
 void    Map_gomoku::printMap() 
@@ -69,4 +77,9 @@ bool    Map_gomoku::isEmpty(int x, int y) const
 uint64_t    *Map_gomoku::getMap() const
 {
 	return (_map);
+}
+
+void	Map_gomoku::setMap(uint64_t *map)
+{
+	_map = map;
 }

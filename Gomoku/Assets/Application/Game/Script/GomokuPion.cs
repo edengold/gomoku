@@ -62,11 +62,11 @@ public class GomokuPion : MonoBehaviour
                 GetComponent<Renderer>().material.SetColor("_Color", Color.black);
             if (Input.GetMouseButtonDown(0))
             {
-         /*       if (_Rules.ia && _Rules.Player != 0)
+                if (_Rules.ia && _Rules.Player != 0)
                 {
                     notTurn.SetActive(true);
                     return;
-                }*/
+                }
                 if (_Rules.CanIPutHere(id))
                 {
                     if (!one)
@@ -86,7 +86,7 @@ public class GomokuPion : MonoBehaviour
                     int tmp;
                     int b = 0;
                     int w = 0;
-                    while ((tmp = _Rules.GetDeletedPion()) != -1)
+                    while ((tmp = _Rules.GetDeletedPion()) > 0 && tmp < 19*19)
                     {
                             Debug.Log(tmp);
                            _Rules.Board.DeletePion(tmp);
@@ -105,6 +105,8 @@ public class GomokuPion : MonoBehaviour
                     _Rules.NbBlackPriseTmp = _Rules.NbBlackPrise - b;
 
                     InvokePion(_Rules.Player);
+                 //   Debug.Log("player " + _Rules.Player);
+                    _Rules.IaPlay(1, id);
                 }
                 else
                 {

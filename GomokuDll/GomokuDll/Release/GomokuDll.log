@@ -1,10 +1,8 @@
-﻿  GomokuApi.cpp
-  MapGomoku.cpp
+﻿  ia_gomoku.cpp
+C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\include\xlocale(341): warning C4530: Gestionnaire d'exceptions C++ utilisé, mais les sémantiques de déroulement n'ont pas été activées. Spécifiez /EHsc
+..\..\..\arbitre\ia_gomoku.cpp(103): warning C4244: 'argument' : conversion de 'float' en 'const int', perte possible de données
+..\..\..\arbitre\ia_gomoku.cpp(336): warning C4018: '<' : incompatibilité signed/unsigned
+C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\include\exception(359): warning C4577: 'noexcept' utilisé sans mode de gestion d'exceptions spécifié. L'arrêt en cas d'exception n'est pas garanti. Spécifiez /EHsc
      Création de la bibliothèque C:\Users\rusig_n\Documents\Gomoku\unity\GomokuDll\Release\GomokuDll.lib et de l'objet C:\Users\rusig_n\Documents\Gomoku\unity\GomokuDll\Release\GomokuDll.exp
-  Génération de code en cours
-  14 of 485 functions ( 2.9%) were compiled, the rest were copied from previous compilation.
-    0 functions were new in current compilation
-    12 functions had inline decision re-evaluated but remain unchanged
-  Fin de la génération du code
-  GomokuDll.vcxproj -> C:\Users\rusig_n\Documents\Gomoku\unity\GomokuDll\Release\GomokuDll.dll
-  GomokuDll.vcxproj -> C:\Users\rusig_n\Documents\Gomoku\unity\GomokuDll\Release\GomokuDll.pdb (Full PDB)
+ia_gomoku.obj : error LNK2001: symbole externe non résolu "public: int __thiscall Map_gomoku::setPiece(int,int,int)" (?setPiece@Map_gomoku@@QAEHHHH@Z)
+C:\Users\rusig_n\Documents\Gomoku\unity\GomokuDll\Release\GomokuDll.dll : fatal error LNK1120: 1 externes non résolus

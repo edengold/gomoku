@@ -104,11 +104,16 @@ GomokuApi::~GomokuApi()
 }
 
 #pragma region ForAPI
-/*
+
+void	GomokuApi::setMap(uint64_t *map)
+{
+	_board.setMap(map);
+}
+
 Map_gomoku GomokuApi::get_board() const
 {
     return _board;
-}*/
+}
 
 int GomokuApi::get_turn() const
 {
@@ -124,20 +129,7 @@ void GomokuApi::set_turn()
 		_color = BLACK;
 	}
 }
-/*
-bool GomokuApi::check_if_free(std::pair<int, int> pos)
-{
-	if (_board.find(pos) == _board.end())
-		return true;
-	return false;
-}
-bool GomokuApi::check_if_free_cst(std::pair<int, int> pos) const
-{
-	if (_board.find(pos) == _board.end())
-		return true;
-	return false;
-}
-*/
+
 int GomokuApi::put_piece(int x, int y, int color)
 {
 	if (color != _color)
@@ -145,15 +137,6 @@ int GomokuApi::put_piece(int x, int y, int color)
 	_board.setPiece(x, y, color);
 	return true;
 }
-/*
-bool GomokuApi::check_if_free(std::pair<int, int> pos) const
-{
-	if (_board.find(pos) == _board.end())
-		return true;
-	return false;
-}
-*/
-
 
 bool GomokuApi::check_5_align(pair pos, std::list<pair> & pieces) const
 {
@@ -181,7 +164,7 @@ bool GomokuApi::check_5_align(pair pos, std::list<pair> & pieces) const
 	return (check);
 }
 
-int GomokuApi::check_5_align_board()
+int GomokuApi::check_5_align_board() const
 {
 	std::list<pair>       pieces;
 
@@ -202,6 +185,7 @@ std::list<pair> GomokuApi::check_line_align(int x_inc, int y_inc, int x, int y) 
 	int                                   color = _board.getPiece(x, y);
 	std::list<std::pair<int, int>>        line;
 	int                                   cursor = color;
+
 	if (color == EMPTY)
 		return (line);
 	while (cursor == color)
@@ -252,7 +236,8 @@ std::list<pair> GomokuApi::check_if_vulnerable(int x, int y) const
 	for (int rotation = 0; rotation < 4; rotation++)
 	{
 		pattern = "";
-		x_inc = (rotation + 2) / 3; y_inc = (rotation == 0) ? (1) : (2 - rotation);
+		x_inc = (rotation + 2) / 3; 
+		y_inc = (rotation == 0) ? (1) : (2 - rotation);
 		x -= 2 * x_inc; y -= 2 * y_inc;
 		for (int i = 0; i < 5; i++)
 		{
@@ -270,7 +255,8 @@ std::list<pair> GomokuApi::check_if_vulnerable(int x, int y) const
 		{
 			vul_points.push_back(pair(x + (char_pos - 5) * x_inc, y + (char_pos - 5) * y_inc));
 		}
-		x -= 3 * x_inc; y -= 3 * y_inc;
+		x -= 3 * x_inc;
+		y -= 3 * y_inc;
 	}
 	return (vul_points);
 }
@@ -323,31 +309,20 @@ pair GomokuApi::is_3_align(int x, int y, int inc_x, int inc_y, int color) const
 int    GomokuApi::check_pieces_taken(std::pair<int, int> one, std::pair<int, int> two, std::pair<int, int> three, int **tab)
 {
 	int adversary = (_color == WHITE) ? BLACK : WHITE;
+
 	if (_board.isEmpty(one.first, one.second) || _board.isEmpty(two.first, two.second) || _board.isEmpty(three.first, three.second))
-	{
-		/*fichier << "FAIL AT EMPTY CHECK\n";
-		fichier << "ONE " << one.first << " " << one.second << std::endl;
-		fichier << "TWO " << two.first << " " << two.second << std::endl;;
-		fichier << "THREE " << three.first << " " << three.second << std::endl;*/
-		//_board.printMap();
 		return 0;
-	}
 	if (_board.getPiece(one.first, one.second) == _color && _board.getPiece(two.first, two.second) == adversary && _board.getPiece(three.first, three.second) == adversary)
 	{
-		fichier << "AVANT\n";
-		_board.printMap();
 		tab[0][0] = two.first;
 		tab[0][1] = two.second;
 		_board.setPiece(two.first, two.second, EMPTY);
 		tab[1][0] = three.first;
 		tab[1][1] = three.second;
 		_board.setPiece(three.first, three.second, EMPTY);
-		fichier << "APRES\n";
-		_board.printMap();
-		/*fichier << "OK : PRISE\n";*/
+		std::cout << tab[0][0] << std::endl;
 		return 2;
 	}
-	/*fichier << "NO PIECE TAKEN FOUND\n";*/
 	return 0;
 }
 
@@ -361,7 +336,6 @@ int **GomokuApi::check_if_can_take(int x, int y)
 	tab = new int*[MAP_H];
 	for (int i = 0; i < MAP_H; ++i)
 		tab[i] = new int[2];
-	//fichier << "START : CHECK IF TAKEN\n";
 	count += check_pieces_taken(pair(pos.first + 3, pos.second), pair(pos.first + 2, pos.second), pair(pos.first + 1, pos.second), &tab[count]);
 	count += check_pieces_taken(pair(pos.first - 3, pos.second), pair(pos.first - 2, pos.second), pair(pos.first - 1, pos.second), &tab[count]);
 	count += check_pieces_taken(pair(pos.first, pos.second + 3), pair(pos.first, pos.second + 2), pair(pos.first, pos.second + 1), &tab[count]);
@@ -371,7 +345,6 @@ int **GomokuApi::check_if_can_take(int x, int y)
 	count += check_pieces_taken(pair(pos.first - 3, pos.second + 3), pair(pos.first - 2, pos.second + 2), pair(pos.first - 1, pos.second + 1), &tab[count]);
 	count += check_pieces_taken(pair(pos.first + 3, pos.second - 3), pair(pos.first + 2, pos.second - 2), pair(pos.first + 1, pos.second - 1), &tab[count]);
 	tab[count][0] = -1;
-	fichier << "cout => " << count << std::endl;
 	return tab;
 }
 
@@ -413,10 +386,9 @@ bool GomokuApi::CanIPutHere(int pos)
 {
 	int x = static_cast<int>(pos % MAP_H);
 	int y = static_cast<int>(pos / MAP_H);
-	fichier << "POS => " << pos << " x:" << x << " y:" << y << "\n";
+	//chier << "POS => " << pos << " x:" << x << " y:" << y << "\n";
 	if (!is_double_3_align(x, y, _color))
 	{
-	//	std::pair<int, int> tmp(x, y);
 		put_piece(x ,y, _color);
 		int                 **tab;
 
@@ -441,14 +413,12 @@ bool GomokuApi::CanIPutHere(int pos)
 		{
 			_isVictory = true;
 			(check == WHITE) ? _victoryTeam = true : _victoryTeam = false;
-//			_victoryTeam = _color;
 			return true;
 		}
 		if (_color == BLACK)
 			_color = WHITE;
 		else
 			_color = BLACK;
-		//_color = !_color;
 		return true;
 	}
 	return false;
@@ -477,13 +447,7 @@ bool GomokuApi::GetVictory() const
 
 void GomokuApi::special_move(int x, int y, int color)
 {
-	//std::pair<int, int> pos(x, y);
-
 	_board.setPiece(x, y, color);
-/*	if (color >= 0)
-		_board[pos] = color;
-	else
-		_board.erase(pos);*/
 }
 
 void GomokuApi::set3Rule(bool val)

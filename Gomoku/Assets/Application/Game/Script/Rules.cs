@@ -8,6 +8,7 @@ using UnityEngine.UI;
 public class Rules : MonoBehaviour
 {
     #region DllImport
+
     [DllImport("GomokuDll", CharSet = CharSet.Unicode)]
     static extern int Add(int a, int b);
 
@@ -46,11 +47,32 @@ public class Rules : MonoBehaviour
 
     [DllImport("GomokuDll", CharSet = CharSet.Unicode)]
     static extern int GetError(IntPtr api);
+
+    [DllImport("GomokuDll", CharSet = CharSet.Unicode)]
+    static extern IntPtr CreateIAGomoku();
+
+    [DllImport("GomokuDll", CharSet = CharSet.Unicode)]
+    static extern void DeleteIAGomoku(IntPtr ia);
+
+    [DllImport("GomokuDll", CharSet = CharSet.Unicode)]
+    static extern void SetIa(IntPtr ia, IntPtr api);
+
+    [DllImport("GomokuDll", CharSet = CharSet.Unicode)]
+    static extern void RunIa(IntPtr ia, IntPtr api, int color, int pos);
+
+    [DllImport("GomokuDll", CharSet = CharSet.Unicode)]
+    static extern int GetPos(IntPtr api);
+
+    [DllImport("GomokuDll", CharSet = CharSet.Unicode)]
+    static extern int GetTime(IntPtr api);
+
     #endregion
 
     private IntPtr _gomokuAPI;
+    private IntPtr _gomokuIA;
     public int Player;
     public bool ia = true;
+    public bool iaTurn = false;
     public GomokuBoardManager Board;
     public int NbBlackPrise;
     public int NbBWhitePrise;
@@ -61,15 +83,21 @@ public class Rules : MonoBehaviour
     public GameObject VicScreen;
     public bool _isReversed = false;
     public Text VictoriTest;
+    public GameObject Timer;
+    public Text TimerText;
 
     void Awake()
     {
-        ia = true;
+        ia = false;
         if (PlayerPrefs.GetInt("IA") == 1)
+        {
+            Timer.SetActive(true);
             ia = true;
+        }
         _gomokuAPI = CreateGomokuAPI();
-
+        _gomokuIA = CreateIAGomoku();
     }
+
     void Start()
     {
         if (PlayerPrefs.GetInt("breakrule") == 0)
@@ -102,10 +130,18 @@ public class Rules : MonoBehaviour
             }
         }
     }
+
+    public void IaPlay(int color, int pos)
+    {
+        SetIa(_gomokuIA, _gomokuAPI);
+        RunIa(_gomokuIA, _gomokuAPI, color, pos);
+    }
+
     public void ch3(bool val)
     {
         Opt3Rule(_gomokuAPI, val);
     }
+
     public void GetTurn()
     {
         if (GetTurn(_gomokuAPI))
@@ -120,12 +156,14 @@ public class Rules : MonoBehaviour
     {
         return GetVictory(_gomokuAPI);
     }
+
     public int GetVictoryTeam()
     {
         if (GetVictoryTeam(_gomokuAPI))
             return 0;
         return 1;
     }
+
     public int GetDeletedPion()
     {
         int tmp;
@@ -140,6 +178,7 @@ public class Rules : MonoBehaviour
         }
         return -1;
     }
+
     public bool CanIPutHere(int pos)
     {
         return CanIPutHere(_gomokuAPI, pos);
@@ -163,13 +202,22 @@ public class Rules : MonoBehaviour
             NbBWhitePrise = NbBWhitePriseTMp;
             NbBlackPrise = NbBlackPriseTmp;
         }
-
     }
+
     #endregion
 
     void Update()
     {
         GetTurn();
+        if (ia)
+        {
+            int pos;
+            if ((pos = GetPos(_gomokuIA)) != -1)
+            {
+                TimerText.text = GetTime(_gomokuIA) + " ms";
+                Board.CreatePion(pos, 1);
+            }
+        }
         Debug.Log("ICI LERROR => " + GetError(_gomokuAPI));
         if (GetVictory(_gomokuAPI))
         {
@@ -197,12 +245,12 @@ public class Rules : MonoBehaviour
         {
             VicScreen.SetActive(true);
         }
-
     }
 
     public void OnDestroy()
     {
         Debug.Log("GomokuAPI Destroy");
         DeleteGomokuAPI(_gomokuAPI);
+        DeleteIAGomoku(_gomokuIA);
     }
 }
