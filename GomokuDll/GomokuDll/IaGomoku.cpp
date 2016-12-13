@@ -242,8 +242,7 @@ void	IAGomoku::points_branch(int color, coor place, Map_gomoku &map, coor cpt_ea
 	if (cpt > 0 && _rule_brk == true)
 		if ((cpt = check_5_align_board(map)) != EMPTY)
 			_points += (cpt == color) ? (HEUR_WIN) : (HEUR_LOSE);
-	if ((cpt = check_win(map, place)) != EMPTY)
-		_points += (cpt == color) ? (HEUR_WIN) : (HEUR_LOSE);
+	_points += check_win(map, place);
 	color = (color == BLACK) ? (WHITE) : (BLACK);
 	if (_depth > 0)
 	{
@@ -284,12 +283,20 @@ int	IAGomoku::check_win(const Map_gomoku &map, coor place) const
 {
 	int	values_x[] = DIRX;
 	int	values_y[] = DIRY;
-	int	res;
+	int	points = 0;
+	int res_tmp = 0;
 
 	for (int i = 0; i < 4; i++)
-		if ((res = check_5_align(map, place, values_x[i], values_y[i])) != EMPTY)
-		{
-			return (res);
+	{
+		res_tmp = check_var_align(map, place, values_x[i], values_y[i]);
+		if (res_tmp == 2)
+			points += HEUR_TWO;
+		else if (res_tmp == 3)
+			points += HEUR_THREE;
+		else if (res_tmp == 4)
+			points += HEUR_FOUR;
+		else if (res_tmp >= 5)
+			points += HEUR_WIN;
 		}
 	return (EMPTY);
 }
@@ -350,6 +357,32 @@ int	IAGomoku::check_5_align_board(const Map_gomoku &map) const
 		}
 	}
 	return (res);
+}
+
+int IAGomoku::check_var_align(const Map_gomoku &map, coor place, int x_inc, int y_inc) const
+{
+	int	forwd_len = 0;
+	int	bacwd_len = 0;
+	int	color = map.getPiece(place.x, place.y);
+	coor	cur;
+
+	cur.x = place.x;
+	cur.y = place.y;
+	while (!IS_OUT(cur.x, cur.y) && map.getPiece(cur.x, cur.y) == color)
+	{
+		cur.x += x_inc;
+		cur.y += y_inc;
+		forwd_len += 1;
+	}
+	cur.x = place.x - x_inc;
+	cur.y = place.y - y_inc;
+	while (!IS_OUT(cur.x, cur.y) && map.getPiece(cur.x, cur.y) == color)
+	{
+		cur.x -= x_inc;
+		cur.y -= y_inc;
+		bacwd_len += 1;
+	}
+	return (forwd_len + bacwd_len);
 }
 
 int	IAGomoku::check_5_align(const Map_gomoku &map, coor place, int x_inc, int y_inc) const
