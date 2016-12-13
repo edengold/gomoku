@@ -3,7 +3,9 @@
 #include <iostream>
 #include <cstdint>
 #include <bitset>
+#include <string.h>
 #include <fstream>
+
 
 #define MAP_H 19
 #define BLACK 3
