@@ -32,6 +32,9 @@
 # define HEUR_LOSE (-10)
 # define HEUR_EAT (2)
 # define HEUR_EATEN (-2)
+# define HEUR_FOUR (4)
+# define HEUR_THREE (2)
+# define HEUR_TWO (1)
 
 typedef struct s_coor
 {
@@ -70,6 +73,7 @@ private:
 	int			eat(Map_gomoku &, coor) const;
 	int			eat_dir(Map_gomoku &, coor, int, int) const;
 	int			check_5_align_board(const Map_gomoku &) const;
+	int			check_var_align(const Map_gomoku &map, coor place, int x_inc, int y_inc) const;
 	int			check_5_align(const Map_gomoku &, coor, int, int) const;
 	int			check_breakable(const Map_gomoku&, coor, int, int) const;
 	bool			check_if_vulnerable(const Map_gomoku &map, coor place, int x_inc, int y_inc) const;
