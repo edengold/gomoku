@@ -1,0 +1,20 @@
+﻿  MapGomoku.cpp
+  GomokuApi.cpp
+c:\program files (x86)\microsoft visual studio 14.0\vc\include\utility(172): warning C4267: 'initialisation' : conversion de 'size_t' en 'int', perte possible de données
+  c:\users\rusig_n\documents\gomoku\unity\gomokudll\gomokudll\gomokuapi.cpp(253): note: voir la référence à l'instanciation de la fonction modèle 'std::pair<int,int>::pair<std::size_t,std::size_t,void,0>(_Other1 &&,_Other2 &&) noexcept' en cours de compilation
+          with
+          [
+              _Other1=std::size_t,
+              _Other2=std::size_t
+          ]
+  c:\users\rusig_n\documents\gomoku\unity\gomokudll\gomokudll\gomokuapi.cpp(253): note: voir la référence à l'instanciation de la fonction modèle 'std::pair<int,int>::pair<std::size_t,std::size_t,void,0>(_Other1 &&,_Other2 &&) noexcept' en cours de compilation
+          with
+          [
+              _Other1=std::size_t,
+              _Other2=std::size_t
+          ]
+  ia_gomoku.cpp
+c:\users\rusig_n\documents\gomoku\arbitre\ia_gomoku.cpp(103): warning C4244: 'argument' : conversion de 'float' en 'const int', perte possible de données
+c:\users\rusig_n\documents\gomoku\arbitre\ia_gomoku.cpp(127): warning C4267: 'argument' : conversion de 'size_t' en 'int', perte possible de données
+  Génération de code en cours...
+c:\users\rusig_n\documents\gomoku\arbitre\ia_gomoku.cpp(105): error C4716: 'IAGomoku::runIA' : doit retourner une valeur
