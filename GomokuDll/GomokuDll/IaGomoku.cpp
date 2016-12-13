@@ -12,7 +12,7 @@ MYGOMOKU_API void DeleteIAGomoku(IAGomoku *ia)
 
 MYGOMOKU_API void SetIa(IAGomoku *ia, GomokuApi *api)
 {
-	ia->setIA(api, false);
+	ia->setIA(api, false, true);
 }
 
 MYGOMOKU_API void RunIa(IAGomoku *ia, GomokuApi *api, int color, int pos)
@@ -55,17 +55,20 @@ std::list<coor>	IAGomoku::choose_places(uint64_t *map, int x, int y)
 	std::list<coor>	places;
 	coor			tmp;
 
-	for (int x_inc = -2; x_inc <= 2; x_inc++)
+	if (_smart_mode == false)
 	{
-		for (int y_inc = -2; y_inc <= 2; y_inc++)
+		for (int x_inc = -2; x_inc <= 2; x_inc++)
 		{
-			tmp.x = x + x_inc;
-			tmp.y = y + y_inc;
-			if (tmp.x >= 0 && tmp.y >= 0 && tmp.x < MAP_H && tmp.y < MAP_H)
+			for (int y_inc = -2; y_inc <= 2; y_inc++)
 			{
-				if (MAP_AT(map, tmp.x, tmp.y) == EMPTY)
+				tmp.x = x + x_inc;
+				tmp.y = y + y_inc;
+				if (tmp.x >= 0 && tmp.y >= 0 && tmp.x < MAP_H && tmp.y < MAP_H)
 				{
-					places.push_back(tmp);
+					if (MAP_AT(map, tmp.x, tmp.y) == EMPTY)
+					{
+						places.push_back(tmp);
+					}
 				}
 			}
 		}
@@ -82,7 +85,6 @@ std::list<coor>	IAGomoku::choose_places(uint64_t *map, int x, int y)
 				}
 			}
 		}
-
 	}
 	return (places);
 }
@@ -110,9 +112,10 @@ _game.setMap(new_map);
 }
 */
 
-void IAGomoku::setIA(GomokuApi *game, bool rule_brk)
+void IAGomoku::setIA(GomokuApi *game, bool rule_brk, bool smart_mode)
 {
 	_rule_brk = rule_brk;
+	_smart_mode = smart_mode;
 	_api = game;
 	_game = game->get_board();
 	_generator = std::default_random_engine();
@@ -127,7 +130,6 @@ void *IAGomoku::runIA(int color, std::list<coor> places)
 {
 	std::list<int>	scores;
 	possibility     elem;
-	coor		cpt_eat;
 	float		res;
 	std::clock_t    start;
 
@@ -138,14 +140,9 @@ void *IAGomoku::runIA(int color, std::list<coor> places)
 	for (std::list<coor>::iterator place = places.begin(); place != places.end(); place++)
 	{
 		res = 0;
-		for (int i = 0; i < 50; i++)
+		for (int i = 0; i < RANDOM_BRANCHES; i++)
 		{
-			cpt_eat.x = 0;
-			cpt_eat.y = 0;
-			_points = 0;
-			_depth = 10;
-			monte_carlo(*place, cpt_eat);
-			res += _points;
+			res += monte_carlo(*place);
 		}
 		elem.score = res;
 		elem.pos.x = (*place).x;
@@ -168,15 +165,68 @@ void *IAGomoku::runIA(int color, std::list<coor> places)
 	_timeIa = (std::clock() - start) / (double)(CLOCKS_PER_SEC / 1000);
 	_api->CanIPutHere(finalpos);
 	_posToSend = finalpos;
-
 }
 
-void	IAGomoku::monte_carlo(coor place, coor cpt_eat)
+int	IAGomoku::monte_carlo(coor place)
 {
 	Map_gomoku map(_game);
+	coor	cpt_eat;
+	int		points;
 
+	_points = 0;
+	_depth = DEPTH_MC;
+	cpt_eat.x = 0;
+	cpt_eat.y = 0;
 	points_branch(_color, place, map, cpt_eat);
+	points = _points;
+	_points = 0;
+	_depth = DEPTH_MC;
+	cpt_eat.x = 0;
+	cpt_eat.y = 0;
+	_color = (_color == BLACK) ? (WHITE) : (BLACK);
+	points_branch((_color == BLACK) ? (WHITE) : (BLACK), place, map, cpt_eat);
+	if (_points > points)
+		points = _points;
+	return (points);
 }
+
+/*
+int IAGomoku::min_max(coor place)
+{
+	Map_gomoku map(_game);
+	coor	cpt_eat;
+	int		points;
+	std::list<coor>	places = choose_places(map.getMap(), place.x, place.y);
+	std::list<coor>	places_tmp;
+
+	for (int i = 0; i < DEPTH_MX; i++)
+	{
+		for (std::list<coor>::iterator pl = places.begin(); pl != places.end(); pl++)
+		{
+			places_tmp = choose_places(map.getMap(), pl->x, pl->y);
+			for (std::list<coor>::iterator pl2 = places_tmp.begin(); pl2 != places_tmp.end(); pl2++)
+			{
+				places.insert(pl, *pl2);
+			}
+		}
+	}
+	_points = 0;
+	_depth = DEPTH_MX;
+	cpt_eat.x = 0;
+	cpt_eat.y = 0;
+	points_branch(_color, place, map, cpt_eat);
+	points = _points;
+	_points = 0;
+	_depth = DEPTH_MX;
+	cpt_eat.x = 0;
+	cpt_eat.y = 0;
+	_color = (_color == BLACK) ? (WHITE) : (BLACK);
+	points_branch((_color == BLACK) ? (WHITE) : (BLACK), place, map, cpt_eat);
+	if (_points > points)
+		points = _points;
+	return (points);
+}
+*/
 
 coor	IAGomoku::random_place(uint64_t *map, int x, int y)
 {
@@ -242,7 +292,10 @@ void	IAGomoku::points_branch(int color, coor place, Map_gomoku &map, coor cpt_ea
 	if (cpt > 0 && _rule_brk == true)
 		if ((cpt = check_5_align_board(map)) != EMPTY)
 			_points += (cpt == color) ? (HEUR_WIN) : (HEUR_LOSE);
-	_points += check_win(map, place);
+	if (_color == color)
+		_points += check_win(map, place);
+	else
+		_points -= check_win(map, place);
 	color = (color == BLACK) ? (WHITE) : (BLACK);
 	if (_depth > 0)
 	{
