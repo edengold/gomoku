@@ -28,6 +28,10 @@
 # define VUL_PAT3 (WHITE | (BLACK << 2) | (BLACK << 4) | (EMPTY << 6))
 # define VUL_PAT4 (EMPTY | (BLACK << 2) | (BLACK << 4) | (WHITE << 6))
 
+# define DEPTH_MC (3)
+# define DEPTH_MX (3)
+# define RANDOM_BRANCHES (50)
+
 # define HEUR_WIN (10)
 # define HEUR_LOSE (-10)
 # define HEUR_EAT (2)
@@ -58,7 +62,7 @@ public:
 	std::list<coor>	choose_places(uint64_t *map, int x, int y);
 	coor			random_place(uint64_t *map, int x, int y);
 	void             *runIA(int color, std::list<coor>);
-	void			setIA(GomokuApi *game, bool rule_brk);
+	void			setIA(GomokuApi *game, bool rule_brk, bool _smart_mode);
 	std::vector<possibility>            _solutions;
 	int				getTime() { return _timeIa; };
 	void				setTime(int time) { _timeIa = time; };
@@ -66,7 +70,8 @@ public:
 	void				setPos(int pos) { _posToSend = pos; };
 private:
 	void			sort_score(std::vector<possibility> &);
-	void			monte_carlo(coor, coor);
+	int				monte_carlo(coor);
+	//int				min_max(coor);
 	void			points_branch(int, coor, Map_gomoku &, coor);
 	int			color_win_branch(int, coor, Map_gomoku &, coor);
 	int			check_win(const Map_gomoku &, coor) const;
@@ -92,6 +97,7 @@ private:
 	int			           _color;
 	int			           _points;
 	int			           _depth;
+	int					_smart_mode;
 };
 
 extern "C" {
