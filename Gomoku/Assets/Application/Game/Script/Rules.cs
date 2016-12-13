@@ -8,6 +8,7 @@ using UnityEngine.UI;
 public class Rules : MonoBehaviour
 {
     #region DllImport
+#if UNITY_STANDALONE_WIN
 
     [DllImport("GomokuDll", CharSet = CharSet.Unicode)]
     static extern int Add(int a, int b);
@@ -65,7 +66,66 @@ public class Rules : MonoBehaviour
 
     [DllImport("GomokuDll", CharSet = CharSet.Unicode)]
     static extern int GetTime(IntPtr api);
+#endif
+#if UNITY_STANDALONE_LINUX
 
+    [DllImport("GomokuAPI", CharSet = CharSet.Unicode)]
+    static extern int Add(int a, int b);
+
+    [DllImport("GomokuAPI", CharSet = CharSet.Unicode)]
+    static extern IntPtr CreateGomokuAPI();
+
+    [DllImport("GomokuAPI", CharSet = CharSet.Unicode)]
+    static extern void DeleteGomokuAPI(IntPtr api);
+
+    [DllImport("GomokuAPI", CharSet = CharSet.Unicode)]
+    static extern bool GetTurn(IntPtr api);
+
+    [DllImport("GomokuAPI", CharSet = CharSet.Unicode)]
+    static extern bool SetTurn(IntPtr api);
+
+    [DllImport("GomokuAPI", CharSet = CharSet.Unicode)]
+    static extern bool CanIPutHere(IntPtr api, int pos);
+
+    [DllImport("GomokuAPI", CharSet = CharSet.Unicode)]
+    static extern int GetDeletedPion(IntPtr api);
+
+    [DllImport("GomokuAPI", CharSet = CharSet.Unicode)]
+    static extern bool GetVictoryTeam(IntPtr api);
+
+    [DllImport("GomokuAPI", CharSet = CharSet.Unicode)]
+    static extern bool GetVictory(IntPtr api);
+
+    [DllImport("GomokuAPI", CharSet = CharSet.Unicode)]
+    static extern bool Opt3Rule(IntPtr api, bool col);
+
+    [DllImport("GomokuAPI", CharSet = CharSet.Unicode)]
+    static extern int OptBreakRule(IntPtr api, bool col);
+
+    [DllImport("GomokuAPI", CharSet = CharSet.Unicode)]
+    static extern void ChangeMap(IntPtr api, int x, int y, int color);
+
+    [DllImport("GomokuAPI", CharSet = CharSet.Unicode)]
+    static extern int GetError(IntPtr api);
+
+    [DllImport("GomokuAPI", CharSet = CharSet.Unicode)]
+    static extern IntPtr CreateIAGomoku();
+
+    [DllImport("GomokuAPI", CharSet = CharSet.Unicode)]
+    static extern void DeleteIAGomoku(IntPtr ia);
+
+    [DllImport("GomokuAPI", CharSet = CharSet.Unicode)]
+    static extern void SetIa(IntPtr ia, IntPtr api);
+
+    [DllImport("GomokuAPI", CharSet = CharSet.Unicode)]
+    static extern void RunIa(IntPtr ia, IntPtr api, int color, int pos);
+
+    [DllImport("GomokuAPI", CharSet = CharSet.Unicode)]
+    static extern int GetPos(IntPtr api);
+
+    [DllImport("GomokuAPI", CharSet = CharSet.Unicode)]
+    static extern int GetTime(IntPtr api);
+#endif
     #endregion
 
     private IntPtr _gomokuAPI;

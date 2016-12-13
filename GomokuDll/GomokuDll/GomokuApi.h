@@ -10,8 +10,8 @@
 #include <fstream>
 #include "MapGomoku.h"
 
-// define MYGOMOKU_API __declspec(dllexport)
-# define MYGOMOKU_API __attribute__((visibility("default")))
+# define MYGOMOKU_API __declspec(dllexport)
+//# define MYGOMOKU_API __attribute__((visibility("default")))
 # define MY_ABS(nb) ((nb<0)?(nb):(-nb))
 # define PATTERN(pattern) ((ret = ((tmp = line.find(pattern)) != std::string::npos)?(tmp):(ret)) != std::string::npos)
 
