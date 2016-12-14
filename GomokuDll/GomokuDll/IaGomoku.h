@@ -28,17 +28,18 @@
 # define VUL_PAT3 (WHITE | (BLACK << 2) | (BLACK << 4) | (EMPTY << 6))
 # define VUL_PAT4 (EMPTY | (BLACK << 2) | (BLACK << 4) | (WHITE << 6))
 
-# define DEPTH_MC (9)
+# define DEPTH_MC (3)
 # define DEPTH_MX (3)
-# define RANDOM_BRANCHES (30)
+# define RANDOM_BRANCHES (25)
 
 # define HEUR_WIN (10)
 # define HEUR_LOSE (-10)
-# define HEUR_EAT (10000)
+# define HEUR_EAT (20)
 # define HEUR_EATEN (-2)
 # define HEUR_FOUR (10)
 # define HEUR_THREE (10)
-# define HEUR_TWO (1)
+# define HEUR_TWO (10)
+# define HEUR_BLOCK (1000)
 
 typedef struct s_coor
 {
@@ -79,6 +80,7 @@ private:
 	int			eat_dir(Map_gomoku &, coor, int, int) const;
 	int			check_5_align_board(const Map_gomoku &) const;
 	int			check_var_align(const Map_gomoku &map, coor place, int x_inc, int y_inc) const;
+	bool		check_block_align(const Map_gomoku &map, coor place, int x_inc, int y_inc) const;
 	int			check_5_align(const Map_gomoku &, coor, int, int) const;
 	int			check_breakable(const Map_gomoku&, coor, int, int) const;
 	bool			check_if_vulnerable(const Map_gomoku &map, coor place, int x_inc, int y_inc) const;

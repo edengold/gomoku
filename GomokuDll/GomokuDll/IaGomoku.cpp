@@ -290,6 +290,8 @@ void	IAGomoku::points_branch(int color, coor place, Map_gomoku &map, coor cpt_ea
 			_points += (cpt == color) ? (HEUR_WIN*_depth) : (HEUR_LOSE *_depth);
 	if (_color == color)
 		_points += check_win(map, place) *_depth;
+	if (_color == color && _depth == DEPTH_MC)
+
 	//else
 		//_points -= check_win(map, place);
 //	fichierMapa << " points 2 = " << _points << std::endl;
@@ -349,6 +351,8 @@ int	IAGomoku::check_win(const Map_gomoku &map, coor place) const
 			else if (res_tmp >= 5)
 				points += HEUR_WIN;
 		}
+		if (_depth == (DEPTH_MC - 1) && check_block_align(map, place, values_x[i], values_y[i]) == true)
+			points += HEUR_BLOCK;
 	}
 	return (points);
 }
@@ -435,6 +439,34 @@ int IAGomoku::check_var_align(const Map_gomoku &map, coor place, int x_inc, int 
 		bacwd_len += 1;
 	}
 	return (forwd_len + bacwd_len);
+}
+
+bool IAGomoku::check_block_align(const Map_gomoku &map, coor place, int x_inc, int y_inc) const
+{
+	int	forwd_len = 0;
+	int	bacwd_len = 0;
+	int	color = (map.getPiece(place.x, place.y) == WHITE) ? (BLACK) : (WHITE);
+	coor	cur;
+
+	cur.x = place.x + x_inc;
+	cur.y = place.y + y_inc;
+	while (!IS_OUT(cur.x, cur.y) && map.getPiece(cur.x, cur.y) == color)
+	{
+		cur.x += x_inc;
+		cur.y += y_inc;
+		forwd_len += 1;
+	}
+	cur.x = place.x - x_inc;
+	cur.y = place.y - y_inc;
+	while (!IS_OUT(cur.x, cur.y) && map.getPiece(cur.x, cur.y) == color)
+	{
+		cur.x -= x_inc;
+		cur.y -= y_inc;
+		bacwd_len += 1;
+	}
+	if (forwd_len >= 3 || bacwd_len >= 3)
+		return (true);
+	return (false);
 }
 
 int	IAGomoku::check_5_align(const Map_gomoku &map, coor place, int x_inc, int y_inc) const
