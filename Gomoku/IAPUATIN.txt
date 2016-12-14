@@ -1,2 +1,2 @@
 LOG START
-x = 6 y = 13
+x = 10 y = 9

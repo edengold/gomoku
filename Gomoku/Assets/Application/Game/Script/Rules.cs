@@ -207,9 +207,7 @@ public class Rules : MonoBehaviour
         if (GetTurn(_gomokuAPI))
             Player = 0;
         else
-        {
             Player = 1;
-        }
     }
 
     public bool GetVictory()
@@ -227,15 +225,8 @@ public class Rules : MonoBehaviour
     public int GetDeletedPion()
     {
         int tmp;
-        if ((tmp = GetDeletedPion(_gomokuAPI)) != -1)
-        {
+        if ((tmp = GetDeletedPion(_gomokuAPI)) > 0)
             return tmp;
-            if (tmp >= 0 && tmp < 20*20)
-            {
-                Debug.Log(tmp);
-                Board.DeletePion(tmp);
-            }
-        }
         return -1;
     }
 
@@ -254,11 +245,12 @@ public class Rules : MonoBehaviour
             foreach (var val in Board.PionList)
             {
                 GomokuPion pion = val.GetComponent<GomokuPion>();
-                int x = (int) (pion.id%20);
-                int y = (int) (pion.id/20);
+                int x = (int) (pion.id%19);
+                int y = (int) (pion.id/19);
                 ChangeMap(_gomokuAPI, x, y, pion._player);
             }
-            SetTurn(_gomokuAPI);
+            if (!ia)
+                SetTurn(_gomokuAPI);
             NbBWhitePrise = NbBWhitePriseTMp;
             NbBlackPrise = NbBlackPriseTmp;
         }
@@ -275,10 +267,30 @@ public class Rules : MonoBehaviour
             if ((pos = GetPos(_gomokuIA)) != -1)
             {
                 TimerText.text = GetTime(_gomokuIA) + " ms";
+                Debug.Log("POS =" + pos);
                 Board.CreatePion(pos, 1);
+                int tmp;
+                int b = 0;
+                int w = 0;
+                while ((tmp = GetDeletedPion()) > 0 && tmp < 19 * 19)
+                {
+                    Debug.Log(tmp);
+                    Board.DeletePion(tmp);
+                    if (Player == 1)
+                    {
+                        w++;
+                        NbBWhitePrise++;
+                    }
+                    else
+                    {
+                        b++;
+                        NbBlackPrise++;
+                    }
+                }
+                NbBWhitePriseTMp = NbBWhitePrise - w;
+                NbBlackPriseTmp = NbBlackPrise - b;
             }
         }
-        Debug.Log("ICI LERROR => " + GetError(_gomokuAPI));
         if (GetVictory(_gomokuAPI))
         {
             _isVictory = true;
@@ -309,7 +321,6 @@ public class Rules : MonoBehaviour
 
     public void OnDestroy()
     {
-        Debug.Log("GomokuAPI Destroy");
         DeleteGomokuAPI(_gomokuAPI);
         DeleteIAGomoku(_gomokuIA);
     }

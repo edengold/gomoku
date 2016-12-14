@@ -28,16 +28,16 @@
 # define VUL_PAT3 (WHITE | (BLACK << 2) | (BLACK << 4) | (EMPTY << 6))
 # define VUL_PAT4 (EMPTY | (BLACK << 2) | (BLACK << 4) | (WHITE << 6))
 
-# define DEPTH_MC (3)
+# define DEPTH_MC (9)
 # define DEPTH_MX (3)
-# define RANDOM_BRANCHES (50)
+# define RANDOM_BRANCHES (30)
 
 # define HEUR_WIN (10)
 # define HEUR_LOSE (-10)
-# define HEUR_EAT (2)
+# define HEUR_EAT (10000)
 # define HEUR_EATEN (-2)
-# define HEUR_FOUR (4)
-# define HEUR_THREE (2)
+# define HEUR_FOUR (10)
+# define HEUR_THREE (10)
 # define HEUR_TWO (1)
 
 typedef struct s_coor
@@ -91,7 +91,6 @@ private:
 	//std::uniform_int_distribution<int>(0,2);
 	//std::vector<possibility>            _solutions;
 	GomokuApi			*_api;
-	Map_gomoku         _game;
 	int					_posToSend;
 	bool			         _rule_brk;
 	int			           _color;

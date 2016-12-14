@@ -19,12 +19,7 @@ MYGOMOKU_API void RunIa(IAGomoku *ia, GomokuApi *api, int color, int pos)
 {
 	int x = static_cast<int>(pos % MAP_H);
 	int y = static_cast<int>(pos / MAP_H);
-	std::ofstream fichierMap("IAPUATIN.txt", std::ios::out | std::ios::trunc);
-	fichierMap << "LOG START\n";
-
-	fichierMap << "x = " << x << " y = " << y << std::endl;
-
-	ia->runIA(BLACK, ia->choose_places(api->get_board().getMap(), x, y));
+	ia->runIA(BLACK, ia->choose_places(api->get_mapB(), x, y));
 }
 MYGOMOKU_API int GetPos(IAGomoku *ia)
 {
@@ -57,9 +52,9 @@ std::list<coor>	IAGomoku::choose_places(uint64_t *map, int x, int y)
 
 	if (_smart_mode == false)
 	{
-		for (int x_inc = -2; x_inc <= 2; x_inc++)
+		for (int x_inc = -3; x_inc <= 3; x_inc++)
 		{
-			for (int y_inc = -2; y_inc <= 2; y_inc++)
+			for (int y_inc = -3; y_inc <= 3; y_inc++)
 			{
 				tmp.x = x + x_inc;
 				tmp.y = y + y_inc;
@@ -117,8 +112,8 @@ void IAGomoku::setIA(GomokuApi *game, bool rule_brk, bool smart_mode)
 	_rule_brk = rule_brk;
 	_smart_mode = smart_mode;
 	_api = game;
-	_game = game->get_board();
 	_generator = std::default_random_engine();
+
 	//_rd = new std::random_device();
 	//_gen = new std::mt19937(_rd);
 	// std::random_device    _rd;
@@ -148,7 +143,6 @@ void *IAGomoku::runIA(int color, std::list<coor> places)
 		elem.pos.x = (*place).x;
 		elem.pos.y = (*place).y;
 		_solutions.push_back(elem);
-		//std::cout << res << " x:" << (*place).x << " y:" << (*place).y << std::endl;
 		scores.push_back(res);
 	}
 	sort_score(_solutions);
@@ -157,7 +151,6 @@ void *IAGomoku::runIA(int color, std::list<coor> places)
 	{
 		if (!_api->is_double_3_align(_solutions[i].pos.x, _solutions[i].pos.y, BLACK))
 		{
-			fichierMapa << "x = " << _solutions[i].pos.x << " y = " << _solutions[i].pos.y << std::endl;
 			finalpos = (_solutions[i].pos.y * 19) + _solutions[i].pos.x;
 			break;;
 		}
@@ -169,8 +162,8 @@ void *IAGomoku::runIA(int color, std::list<coor> places)
 
 int	IAGomoku::monte_carlo(coor place)
 {
-	Map_gomoku map(_game);
-	Map_gomoku map2(_game);
+	Map_gomoku map(_api->get_mapB());
+	Map_gomoku map2(_api->get_mapB());
 	coor	cpt_eat;
 	int		points;
 
@@ -278,26 +271,28 @@ void	IAGomoku::points_branch(int color, coor place, Map_gomoku &map, coor cpt_ea
 	{
 		if (color == _color)
 		{
-			_points += HEUR_EAT;
+			_points += HEUR_EAT *_depth;
 			cpt_eat.x += cpt;
 			if (cpt_eat.x >= 10 && cpt_eat.x - cpt < 10)
-				_points += HEUR_WIN;
+				_points += HEUR_WIN *_depth;
 		}
-		else
+		/*else
 		{
 			_points += HEUR_EATEN;
 			cpt_eat.y += cpt;
 			if (cpt_eat.y >= 10 && cpt_eat.y - cpt < 10)
 				_points += HEUR_LOSE;
-		}
+		}*/
 	}
+//	fichierMapa << "\n points 1 = " << _points << std::endl;
 	if (cpt > 0 && _rule_brk == true)
 		if ((cpt = check_5_align_board(map)) != EMPTY)
-			_points += (cpt == color) ? (HEUR_WIN) : (HEUR_LOSE);
+			_points += (cpt == color) ? (HEUR_WIN*_depth) : (HEUR_LOSE *_depth);
 	if (_color == color)
-		_points += check_win(map, place);
-	else
-		_points -= check_win(map, place);
+		_points += check_win(map, place) *_depth;
+	//else
+		//_points -= check_win(map, place);
+//	fichierMapa << " points 2 = " << _points << std::endl;
 	color = (color == BLACK) ? (WHITE) : (BLACK);
 	if (_depth > 0)
 	{
@@ -344,16 +339,18 @@ int	IAGomoku::check_win(const Map_gomoku &map, coor place) const
 	for (int i = 0; i < 4; i++)
 	{
 		res_tmp = check_var_align(map, place, values_x[i], values_y[i]);
-		if (res_tmp == 2)
-			points += HEUR_TWO;
-		else if (res_tmp == 3)
-			points += HEUR_THREE;
-		else if (res_tmp == 4)
-			points += HEUR_FOUR;
-		else if (res_tmp >= 5)
-			points += HEUR_WIN;
+		if (res_tmp > points) {
+			if (res_tmp == 2)
+				points += HEUR_TWO;
+			else if (res_tmp == 3)
+				points += HEUR_THREE;
+			else if (res_tmp == 4)
+				points += HEUR_FOUR;
+			else if (res_tmp >= 5)
+				points += HEUR_WIN;
 		}
-	return (EMPTY);
+	}
+	return (points);
 }
 
 int	IAGomoku::eat(Map_gomoku &map, coor place) const

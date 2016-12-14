@@ -77,9 +77,9 @@ MYGOMOKU_API int GetError(GomokuApi *api)
 
 MYGOMOKU_API void ChangeMap(GomokuApi *api, int x, int y, int color)
 {
-	if (color == 1)
+	if (color == 0)
 		api->special_move(x, y, WHITE);
-	else if (color == 0)
+	else if (color == 1)
 		api->special_move(x, y, BLACK);
 	else
 		api->special_move(x, y, EMPTY);
@@ -113,6 +113,11 @@ void	GomokuApi::setMap(uint64_t *map)
 Map_gomoku GomokuApi::get_board() const
 {
     return _board;
+}
+
+uint64_t    *GomokuApi::get_mapB()
+{
+	return _board.getMap();
 }
 
 int GomokuApi::get_turn() const

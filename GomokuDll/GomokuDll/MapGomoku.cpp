@@ -15,6 +15,12 @@ Map_gomoku::Map_gomoku()
 	printMap();
 }
 
+Map_gomoku::Map_gomoku(uint64_t    *map)
+{
+	_map = new uint64_t[MAP_H];
+	for (int y = 0; y < MAP_H; y++)
+		_map[y] = map[y];
+}
 Map_gomoku::Map_gomoku(const Map_gomoku &copy)
 {
 	_map = new uint64_t[MAP_H];

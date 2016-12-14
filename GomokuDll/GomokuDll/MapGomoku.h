@@ -23,6 +23,7 @@ class   Map_gomoku
 {
 public:
 	Map_gomoku();
+	Map_gomoku(uint64_t    *_map);
 	~Map_gomoku();
 	Map_gomoku(const Map_gomoku &copy);
 	Map_gomoku	&operator=(const Map_gomoku &copy) { return *this; }

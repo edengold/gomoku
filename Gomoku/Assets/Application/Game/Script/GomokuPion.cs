@@ -31,7 +31,6 @@ public class GomokuPion : MonoBehaviour
         if (!_isOnBoard)
         {
             _player = player;
-            //Debug.Log("x = " + (int)(id % 20) + " y = " + (int)(id / 20));
             GetComponent<MeshRenderer>().enabled = true;
             if (player == 1)
                 GetComponent<Renderer>().material.SetColor("_Color", Color.black);
@@ -103,15 +102,12 @@ public class GomokuPion : MonoBehaviour
                     }
                     _Rules.NbBWhitePriseTMp = _Rules.NbBWhitePrise - w;
                     _Rules.NbBlackPriseTmp = _Rules.NbBlackPrise - b;
-
                     InvokePion(_Rules.Player);
-                 //   Debug.Log("player " + _Rules.Player);
+                 if (_Rules.ia)
                     _Rules.IaPlay(1, id);
                 }
                 else
-                {
                     notHere.SetActive(true);
-                }
             }
         }
     }

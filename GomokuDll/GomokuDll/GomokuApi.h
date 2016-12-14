@@ -35,6 +35,7 @@ public:
 	~GomokuApi();
 	GomokuApi	&operator=(const GomokuApi &copy) { return *this; }
 	std::ofstream fichier;
+	uint64_t    *GomokuApi::get_mapB();
 
 	Map_gomoku get_board() const;
 	void  setMap(uint64_t *);
