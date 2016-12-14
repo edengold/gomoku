@@ -170,6 +170,7 @@ void *IAGomoku::runIA(int color, std::list<coor> places)
 int	IAGomoku::monte_carlo(coor place)
 {
 	Map_gomoku map(_game);
+	Map_gomoku map2(_game);
 	coor	cpt_eat;
 	int		points;
 
@@ -184,7 +185,7 @@ int	IAGomoku::monte_carlo(coor place)
 	cpt_eat.x = 0;
 	cpt_eat.y = 0;
 	_color = (_color == BLACK) ? (WHITE) : (BLACK);
-	points_branch((_color == BLACK) ? (WHITE) : (BLACK), place, map, cpt_eat);
+	points_branch((_color == BLACK) ? (WHITE) : (BLACK), place, map2, cpt_eat);
 	if (_points > points)
 		points = _points;
 	_color = (_color == BLACK) ? (WHITE) : (BLACK);
@@ -328,8 +329,8 @@ int	IAGomoku::color_win_branch(int color, coor place, Map_gomoku &map, coor cpt_
 	//std::cout << place.x << ", " << place.y << std::endl;
 	//usleep(50000);
 	color = (color == BLACK) ? (WHITE) : (BLACK);
-	if ((res = check_win(map, place)) != EMPTY)
-		return (res);
+	if ((res = check_win(map, place)) >= 5)
+		return (color);
 	return (color_win_branch(color, random_place(map.getMap(), place.x, place.y), map, cpt_eat));
 }
 
