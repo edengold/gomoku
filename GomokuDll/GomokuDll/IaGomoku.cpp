@@ -12,7 +12,7 @@ MYGOMOKU_API void DeleteIAGomoku(IAGomoku *ia)
 
 MYGOMOKU_API void SetIa(IAGomoku *ia, GomokuApi *api)
 {
-	ia->setIA(api, false, true);
+	ia->setIA(api, false, false);
 }
 
 MYGOMOKU_API void RunIa(IAGomoku *ia, GomokuApi *api, int color, int pos)
@@ -187,6 +187,7 @@ int	IAGomoku::monte_carlo(coor place)
 	points_branch((_color == BLACK) ? (WHITE) : (BLACK), place, map, cpt_eat);
 	if (_points > points)
 		points = _points;
+	_color = (_color == BLACK) ? (WHITE) : (BLACK);
 	return (points);
 }
 
